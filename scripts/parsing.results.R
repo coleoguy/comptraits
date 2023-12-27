@@ -18,6 +18,7 @@ for(i in seq(from=1, by=8, length.out=1000)){
     counter <- counter + 1
   }
 }
+write.csv(sum.resAa.Aa, file = "../results/resAa.Aa.csv", row.names=T)
 
 
 # Parsing out Aa and Ad
@@ -38,6 +39,7 @@ for(i in seq(from=8001, by=8, length.out=1000)){ # this line changes
     counter <- counter + 1
   }
 }
+write.csv(sum.resAa.Ad, file = "../results/resAa.Ad.csv", row.names=T)
 
 
 # Parsing out Ad and Ad
@@ -58,6 +60,7 @@ for(i in seq(from=24001, by=8, length.out=1000)){ # this line changes
     counter <- counter + 1
   }
 }
+write.csv(sum.resAd.Ad, file = "../results/resAd.Ad.csv", row.names=T)
 
 
 
