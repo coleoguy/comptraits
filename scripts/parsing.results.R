@@ -63,4 +63,38 @@ for(i in seq(from=24001, by=8, length.out=1000)){ # this line changes
 write.csv(sum.resAd.Ad, file = "../results/resAd.Ad.csv", row.names=T)
 
 
+# Parsing out epistatic architectures
 
+res <- read.csv("../results/sim.results-epistatic.csv")
+elar1 <- "Aa"
+elar2 <- "Aa"
+
+GetTable <- function(res, elar1, elar2){
+  elar1hits <- which(res$trait == elar1)
+  elar2hits <- which(res$trait == elar2) - 1
+  starts <- intersect(elar1hits, elar2hits)
+  sum.res <- as.data.frame(matrix(0,6,6))
+  colnames(sum.res) <- c("Aa","Ad","AaAa","AaAd","AdAd", "NA")
+  row.names(sum.res) <- c("1 / 2", "2 / 1", "1 * 2", "1 + 2", 
+                          "1 - 2", "2 - 1")
+  for(i in starts){ 
+    for(j in 1:5){
+      sum.res[, j] <- sum.res[, j] + as.numeric(!is.na(res[(i + 2):(i + 7), (j + 2)]))
+    }
+    counter <- 1
+    for(k in (i + 2):(i + 7)){
+      if(sum(is.na(res[k, 3:7])) == 5){
+        sum.res[counter, 6] <- sum.res[counter, 6] + 1
+      }
+      counter <- counter + 1
+    }
+  }
+  sum.res <- sum.res/length(starts)
+  print(paste(length(starts), "datsets match your request"))
+  return(sum.res)
+}
+
+a.a.res <- GetTable(res, elar1, elar2)
+d.e.res <- GetTable(res, elar1="Ad", elar2="AaAa")
+e.e.res1 <- GetTable(res, elar1="AdAd", elar2="AaAa")
+write.csv(sum.resAd.Ad, file = "../results/resAd.Ad.csv", row.names=T)
