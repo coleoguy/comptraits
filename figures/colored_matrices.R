@@ -1,7 +1,7 @@
 library(ggplot2)
 library(viridis)
 
-##### colored matrix - Aa & Aa #####
+##### colored matrix - a & a #####
 data <- read.csv("../results/a.a.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
@@ -19,22 +19,22 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/a.a.pdf")
+pdf("../figures/color.num/a.a.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: Aa & Aa") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: a & a") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - Aa & Aa #####
+##### colored matrix - a & a #####
 
-##### colored matrix - Aa & Ad #####
+##### colored matrix - a & d #####
 data <- read.csv("../results/a.d.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
@@ -52,22 +52,22 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/a.d.pdf")
+pdf("../figures/color.num/a.d.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: Aa & Ad") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: a & d") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - Aa & Ad #####
+##### colored matrix - a & d #####
 
-##### colored matrix - Ad & Ad #####
+##### colored matrix - d & d #####
 data <- read.csv("../results/d.d.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
@@ -85,25 +85,25 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/d.d.pdf")
+pdf("../figures/color.num/d.d.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: Ad & Ad") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: d & d") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - Ad & Ad #####
+##### colored matrix - d & d #####
 
 ### ### ### ### ### ### ### ### ### ###
 
-##### colored matrix - Aa & AaAa #####
-data <- read.csv("../results/a.AaAa.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - a & aa #####
+data <- read.csv("../results/a.aa.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -119,56 +119,23 @@ data_long <- expand.grid(Row = rownames(rounded_matrix),
 data_long$Value <- as.vector(rounded_matrix)
 
 # Open PDF device
-pdf("../figures/numbers/a.AaAa.pdf")
+pdf("../figures/color.num/a.aa.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: Aa & AaAa") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: a & aa") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - Aa & AaAa #####
+##### colored matrix - a & aa #####
 
-##### colored matrix - Aa & AaAd #####
-data <- read.csv("../results/a.AaAd.tab.csv", header = TRUE, row.names = 1)
-
-# Convert the data frame to a matrix
-data_matrix <- as.matrix(data)
-
-precision <- 3
-
-# Round the values to the desired precision
-rounded_matrix <- round(data_matrix, digits = precision)
-
-# Creating a data frame suitable for ggplot
-data_long <- expand.grid(Row = rownames(rounded_matrix), 
-                         Column = colnames(rounded_matrix))
-data_long$Value <- as.vector(rounded_matrix)
-
-
-# Open PDF device
-pdf("../figures/numbers/a.AaAd.pdf")
-
-# Creating the plot
-ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
-  geom_tile() +
-  geom_text(aes(label = Value), color = "white") + #added numbers to cells#
-  scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: Aa & AaAd") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
-#close the device
-dev.off()
-##### colored matrix - Aa & AaAd #####
-
-##### colored matrix - Aa & AdAd #####
-data <- read.csv("../results/a.AdAd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - a & ad #####
+data <- read.csv("../results/a.ad.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -185,25 +152,58 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/a.AdAd.pdf")
+pdf("../figures/color.num/a.ad.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: Aa & AdAd") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: a & ad") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - Aa & AdAd #####
+##### colored matrix - a & ad #####
+
+##### colored matrix - a & dd #####
+data <- read.csv("../results/a.dd.tab.csv", header = TRUE, row.names = 1)
+
+# Convert the data frame to a matrix
+data_matrix <- as.matrix(data)
+
+precision <- 3
+
+# Round the values to the desired precision
+rounded_matrix <- round(data_matrix, digits = precision)
+
+# Creating a data frame suitable for ggplot
+data_long <- expand.grid(Row = rownames(rounded_matrix), 
+                         Column = colnames(rounded_matrix))
+data_long$Value <- as.vector(rounded_matrix)
+
+
+# Open PDF device
+pdf("../figures/color.num/a.dd.pdf")
+
+# Creating the plot
+ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
+  geom_tile() +
+  geom_text(aes(label = Value), color = "white") + #added numbers to cells#
+  scale_fill_viridis(name = "Value", limits = c(0, 1)) +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: a & dd") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+#close the device
+dev.off()
+##### colored matrix - a & dd #####
 
 ### ### ### ### ### ### ### ### ### ###
 
-##### colored matrix - Ad & AaAa #####
-data <- read.csv("../results/d.AaAa.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - d & aa #####
+data <- read.csv("../results/d.aa.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -219,56 +219,23 @@ data_long <- expand.grid(Row = rownames(rounded_matrix),
 data_long$Value <- as.vector(rounded_matrix)
 
 # Open PDF device
-pdf("../figures/numbers/d.AaAa.pdf")
+pdf("../figures/color.num/d.aa.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: Ad & AaAa") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: d & aa") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - Ad & AaAa #####
+##### colored matrix - d & aa #####
 
-##### colored matrix - Ad & AaAd #####
-data <- read.csv("../results/d.AaAd.tab.csv", header = TRUE, row.names = 1)
-
-# Convert the data frame to a matrix
-data_matrix <- as.matrix(data)
-
-precision <- 3
-
-# Round the values to the desired precision
-rounded_matrix <- round(data_matrix, digits = precision)
-
-# Creating a data frame suitable for ggplot
-data_long <- expand.grid(Row = rownames(rounded_matrix), 
-                         Column = colnames(rounded_matrix))
-data_long$Value <- as.vector(rounded_matrix)
-
-
-# Open PDF device
-pdf("../figures/numbers/d.AaAd.pdf")
-
-# Creating the plot
-ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
-  geom_tile() +
-  geom_text(aes(label = Value), color = "white") + #added numbers to cells#
-  scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: Ad & AaAd") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
-#close the device
-dev.off()
-##### colored matrix - Ad & AaAd #####
-
-##### colored matrix - Ad & AdAd #####
-data <- read.csv("../results/d.AdAd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - d & ad #####
+data <- read.csv("../results/d.ad.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -285,25 +252,58 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/d.AdAd.pdf")
+pdf("../figures/color.num/d.ad.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: Ad & AdAd") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: d & ad") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - Ad & AdAd #####
+##### colored matrix - a & ad #####
+
+##### colored matrix - d & dd #####
+data <- read.csv("../results/d.dd.tab.csv", header = TRUE, row.names = 1)
+
+# Convert the data frame to a matrix
+data_matrix <- as.matrix(data)
+
+precision <- 3
+
+# Round the values to the desired precision
+rounded_matrix <- round(data_matrix, digits = precision)
+
+# Creating a data frame suitable for ggplot
+data_long <- expand.grid(Row = rownames(rounded_matrix), 
+                         Column = colnames(rounded_matrix))
+data_long$Value <- as.vector(rounded_matrix)
+
+
+# Open PDF device
+pdf("../figures/color.num/d.dd.pdf")
+
+# Creating the plot
+ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
+  geom_tile() +
+  geom_text(aes(label = Value), color = "white") + #added numbers to cells#
+  scale_fill_viridis(name = "Value", limits = c(0, 1)) +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: d & dd") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+#close the device
+dev.off()
+##### colored matrix - d & dd #####
 
 ### ### ### ### ### ### ### ### ### ###
 
-##### colored matrix - AaAa & AaAa #####
-data <- read.csv("../results/AaAa.AaAa.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - aa & aa #####
+data <- read.csv("../results/aa.aa.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -320,23 +320,23 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/AaAa.AaAa.pdf")
+pdf("../figures/color.num/aa.aa.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: AaAa & AaAa") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: aa & aa") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - AaAa & AaAa #####
+##### colored matrix - aa & aa #####
 
-##### colored matrix - AaAa & AaAd #####
-data <- read.csv("../results/AaAa.AaAd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - aa & ad #####
+data <- read.csv("../results/aa.ad.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -353,23 +353,23 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/AaAa.AaAd.pdf")
+pdf("../figures/color.num/aa.ad.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: AaAa & AaAd") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: aa & ad") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - AaAa & AaAd #####
+##### colored matrix - aa & ad #####
 
-##### colored matrix - AaAa & AdAd #####
-data <- read.csv("../results/AaAa.AdAd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - aa & dd #####
+data <- read.csv("../results/aa.dd.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -386,25 +386,25 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/AaAa.AdAd.pdf")
+pdf("../figures/color.num/aa.dd.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: AaAa & AdAd") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: aa & dd") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - AaAa & AdAd #####
+##### colored matrix - aa & dd #####
 
 ### ### ### ### ### ### ### ### ### ###
 
-##### colored matrix - AaAd & AaAa #####
-data <- read.csv("../results/AaAd.AaAa.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - ad & aa #####
+data <- read.csv("../results/ad.aa.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -421,23 +421,23 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/AaAd.AaAa.pdf")
+pdf("../figures/color.num/ad.aa.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: AaAd & AaAa") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: ad & aa") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - AaAd & AaAa #####
+##### colored matrix - ad & aa #####
 
-##### colored matrix - AaAd & AaAd #####
-data <- read.csv("../results/AaAd.AaAd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - ad & ad #####
+data <- read.csv("../results/ad.ad.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -454,23 +454,23 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/AaAd.AaAd.pdf")
+pdf("../figures/color.num/ad.ad.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: AaAd & AaAd") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: ad & ad") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - AaAd & AaAd #####
+##### colored matrix - ad & ad #####
 
-##### colored matrix - AaAd & AdAd #####
-data <- read.csv("../results/AaAd.AdAd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - ad & dd #####
+data <- read.csv("../results/ad.dd.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -487,25 +487,25 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/AaAd.AdAd.pdf")
+pdf("../figures/color.num/ad.dd.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: AaAd & AdAd") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: ad & dd") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - AaAd & AdAd #####
+##### colored matrix - ad & dd #####
 
 ### ### ### ### ### ### ### ### ### ###
 
-##### colored matrix - AdAd & AaAa #####
-data <- read.csv("../results/AdAd.AaAa.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - dd & aa #####
+data <- read.csv("../results/dd.aa.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -522,23 +522,23 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/AdAd.AaAa.pdf")
+pdf("../figures/color.num/dd.aa.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: AdAd & AaAa") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: dd & aa") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - AdAd & AaAa #####
+##### colored matrix - dd & aa #####
 
-##### colored matrix - AdAd & AaAd #####
-data <- read.csv("../results/AdAd.AaAd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - dd & ad #####
+data <- read.csv("../results/dd.ad.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -555,23 +555,23 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/AdAd.AaAd.pdf")
+pdf("../figures/color.num/dd.ad.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: AdAd & AaAd") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: dd & ad") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - AdAd & AaAd #####
+##### colored matrix - dd & ad #####
 
-##### colored matrix - AdAd & AdAd #####
-data <- read.csv("../results/AdAd.AdAd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix - dd & dd #####
+data <- read.csv("../results/dd.dd.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -588,20 +588,20 @@ data_long$Value <- as.vector(rounded_matrix)
 
 
 # Open PDF device
-pdf("../figures/numbers/AdAd.AdAd.pdf")
+pdf("../figures/color.num/dd.dd.pdf")
 
 # Creating the plot
 ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
   geom_tile() +
   geom_text(aes(label = Value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
-  labs(x = "Architectures", y = "Functions", title = "Component Traits: AdAd & AdAd") +
+  labs(x = "Architectures", y = "Functions", title = "Component Traits: dd & dd") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #close the device
 dev.off()
-##### colored matrix - AdAd & AdAd #####
+##### colored matrix - dd & dd #####
 
 
 
