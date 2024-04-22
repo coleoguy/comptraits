@@ -42,9 +42,19 @@ GetMargTab <- function(res, elar){
 }
 
 res.a <- GetMargTab(res, elar="Aa")
+write.csv(res.a, "../results/res.a.csv")
+
 res.d <- GetMargTab(res, elar="Ad")
+write.csv(res.d, "../results/res.d.csv")
 
+res.aa <- GetMargTab(res, elar="AaAa")
+write.csv(res.aa, "../results/res.aa.csv")
 
+res.ad <- GetMargTab(res, elar="AaAd")
+write.csv(res.ad, "../results/res.ad.csv")
+
+res.dd <- GetMargTab(res, elar="AdAd")
+write.csv(res.dd, "../results/res.dd.csv")
 
 
 
