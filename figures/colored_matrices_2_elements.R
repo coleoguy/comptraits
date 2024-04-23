@@ -1,8 +1,8 @@
 library(ggplot2)
 library(viridis)
 
-##### colored matrix - a & a #####
-data <- read.csv("../results/a.a.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- a & a #####
+data <- read.csv("../results/tabs.from.parsing.results/a.a.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -32,10 +32,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - a & a #####
+##### colored matrix for 2 known elements- a & a #####
 
-##### colored matrix - a & d #####
-data <- read.csv("../results/a.d.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- a & d #####
+data <- read.csv("../results/tabs.from.parsing.results/a.d.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -65,10 +65,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - a & d #####
+##### colored matrix for 2 known elements- a & d #####
 
-##### colored matrix - d & d #####
-data <- read.csv("../results/d.d.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- d & d #####
+data <- read.csv("../results/tabs.from.parsing.results/d.d.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -98,12 +98,12 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - d & d #####
+##### colored matrix for 2 known elements- d & d #####
 
 ### ### ### ### ### ### ### ### ### ###
 
-##### colored matrix - a & aa #####
-data <- read.csv("../results/a.aa.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- a & aa #####
+data <- read.csv("../results/tabs.from.parsing.results/a.aa.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -132,10 +132,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - a & aa #####
+##### colored matrix for 2 known elements- a & aa #####
 
 ##### colored matrix - a & ad #####
-data <- read.csv("../results/a.ad.tab.csv", header = TRUE, row.names = 1)
+data <- read.csv("../results/tabs.from.parsing.results/a.ad.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -165,10 +165,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - a & ad #####
+##### colored matrix for 2 known elements- a & ad #####
 
-##### colored matrix - a & dd #####
-data <- read.csv("../results/a.dd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- a & dd #####
+data <- read.csv("../results/tabs.from.parsing.results/a.dd.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -198,12 +198,12 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - a & dd #####
+##### colored matrix for 2 known elements- a & dd #####
 
 ### ### ### ### ### ### ### ### ### ###
 
-##### colored matrix - d & aa #####
-data <- read.csv("../results/d.aa.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- d & aa #####
+data <- read.csv("../results/tabs.from.parsing.results/d.aa.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -232,10 +232,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - d & aa #####
+##### colored matrix for 2 known elements- d & aa #####
 
-##### colored matrix - d & ad #####
-data <- read.csv("../results/d.ad.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- d & ad #####
+data <- read.csv("../results/tabs.from.parsing.results/d.ad.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -265,10 +265,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - a & ad #####
+##### colored matrix for 2 known elements- a & ad #####
 
-##### colored matrix - d & dd #####
-data <- read.csv("../results/d.dd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- d & dd #####
+data <- read.csv("../results/tabs.from.parsing.results/d.dd.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -298,12 +298,12 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - d & dd #####
+##### colored matrix for 2 known elements- d & dd #####
 
 ### ### ### ### ### ### ### ### ### ###
 
-##### colored matrix - aa & aa #####
-data <- read.csv("../results/aa.aa.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- aa & aa #####
+data <- read.csv("../results/tabs.from.parsing.results/aa.aa.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -333,10 +333,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - aa & aa #####
+##### colored matrix for 2 known elements- aa & aa #####
 
-##### colored matrix - aa & ad #####
-data <- read.csv("../results/aa.ad.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- aa & ad #####
+data <- read.csv("../results/tabs.from.parsing.results/aa.ad.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -366,10 +366,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - aa & ad #####
+##### colored matrix for 2 known elements- aa & ad #####
 
-##### colored matrix - aa & dd #####
-data <- read.csv("../results/aa.dd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- aa & dd #####
+data <- read.csv("../results/tabs.from.parsing.results/aa.dd.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -399,12 +399,12 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - aa & dd #####
+##### colored matrix for 2 known elements- aa & dd #####
 
 ### ### ### ### ### ### ### ### ### ###
 
-##### colored matrix - ad & aa #####
-data <- read.csv("../results/ad.aa.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- ad & aa #####
+data <- read.csv("../results/tabs.from.parsing.results/ad.aa.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -434,10 +434,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - ad & aa #####
+##### colored matrix for 2 known elements- ad & aa #####
 
-##### colored matrix - ad & ad #####
-data <- read.csv("../results/ad.ad.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- ad & ad #####
+data <- read.csv("../results/tabs.from.parsing.results/ad.ad.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -467,10 +467,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - ad & ad #####
+##### colored matrix for 2 known elements- ad & ad #####
 
-##### colored matrix - ad & dd #####
-data <- read.csv("../results/ad.dd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- ad & dd #####
+data <- read.csv("../results/tabs.from.parsing.results/ad.dd.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -500,12 +500,12 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - ad & dd #####
+##### colored matrix for 2 known elements- ad & dd #####
 
 ### ### ### ### ### ### ### ### ### ###
 
-##### colored matrix - dd & aa #####
-data <- read.csv("../results/dd.aa.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- dd & aa #####
+data <- read.csv("../results/tabs.from.parsing.results/dd.aa.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -535,10 +535,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - dd & aa #####
+##### colored matrix for 2 known elements- dd & aa #####
 
-##### colored matrix - dd & ad #####
-data <- read.csv("../results/dd.ad.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- dd & ad #####
+data <- read.csv("../results/tabs.from.parsing.results/dd.ad.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -568,10 +568,10 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - dd & ad #####
+##### colored matrix for 2 known elements- dd & ad #####
 
-##### colored matrix - dd & dd #####
-data <- read.csv("../results/dd.dd.tab.csv", header = TRUE, row.names = 1)
+##### colored matrix for 2 known elements- dd & dd #####
+data <- read.csv("../results/tabs.from.parsing.results/dd.dd.tab.csv", header = TRUE, row.names = 1)
 
 # Convert the data frame to a matrix
 data_matrix <- as.matrix(data)
@@ -601,7 +601,7 @@ ggplot(data_long, aes(x = Column, y = Row, fill = Value)) +
 
 #close the device
 dev.off()
-##### colored matrix - dd & dd #####
+##### colored matrix for 2 known elements- dd & dd #####
 
 
 
