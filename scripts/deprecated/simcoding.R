@@ -1,15 +1,7 @@
 # line cross analysis simulations
 library(SAGA2)
-
-# We will be pulling data from our past empirical study of traits
-# These results have 8 rows for each dataset so we will be counting 
-# by 8s when we are pulling the data out.
 starts <- seq(from=0, by=8, length.out=6000)
-
-# For all sims we will use the cohorts P1, P2, F1, BC1, BC2
-# this will read in an empty datamatrix that has no values for means or
-# standard errors but the crossing structure is defined and the environment
-# is set to be the same for all cohorts.
+# For all sims we will use the cohorts P1, P2, F1, BC1, rBC1, BC2, rBC2
 blank <- read.csv("../data/cross.structure.csv")[-c(5,7),]
 
 # get the generating c-matrix
@@ -38,7 +30,6 @@ getExpected <- function(dat, cmat){
   names(x) <- cmat[,1]
   return(x)
 }
-
 getSimDat <- function(expvals, n, emp.sd, dat1, samples=100){
   results <- list()
   for(i in 1:samples){
@@ -52,14 +43,11 @@ getSimDat <- function(expvals, n, emp.sd, dat1, samples=100){
   }
   return(results)
 }
-
 dif <- function(x){
   x <- range(x)
   z <- x[2]-x[1]
   return(z)
 }
-
-# getVals conditions on the infernce being significant.
 getVals <- function(x){
   foo <- x$estimates[,c(F, x$varimp[,2]>.5), drop=F]
   zed <- (abs(as.numeric(foo[1,]))-as.numeric(foo[2,])) > 0
@@ -71,17 +59,12 @@ getVals <- function(x){
 results <- as.data.frame(matrix(NA,48000, 7))
 colnames(results) <- c("trait","beta","Aa","Ad","AaAa","AaAd","AdAd")
 
-# standard deviation proportion based on a reasonable value from empirical 
-# datasets that we have studied.
+# standard deviation proportion
 sdp <- .1
-
-# based on a typical sample size per cohort of empircal datasets
 n <- 20
-
 # build containers for simulated data
 simdata <- vector(mode = "list", length = 6)
 names(simdata) <- c("AA", "AD", "AE", "DD", "DE", "EE")
-
 # these names indicate the architecture of the traits being combined
 # if AA, use Aa for both simple datasets
 # if AD, use Aa for one dataset and Ad for the other
@@ -91,10 +74,9 @@ names(simdata) <- c("AA", "AD", "AE", "DD", "DE", "EE")
 # if EE, sample (AaAa, AaAd, AdAd) twice, one for each dataset
 
 empfiles <- list.files("../data/empirical data/data/")
-# cycle through all genetic architectures
+# cycle through all architectures
 for(i in 1:length(simdata)){
-  # marginalize across empirical characters, 
-  # and compounding functions
+  # marginalize across emp character / type of E / ?
   for(j in 1:replicate){
     print(paste("working on J:", j))
     set.seed(i*j)
@@ -107,21 +89,15 @@ for(i in 1:length(simdata)){
                   "4" = c(4,4),
                   "5" = c(4,sample(5:7, 1)),
                   "6" = sample(5:7, 2, replace=T))
-    # this will create vectors of the opportunity for the 
-    # current architecture to impact a trait
     cmat1 <- cmat[,x[1]]
     cmat2 <- cmat[,x[2]]
     #trait 1 basis
-    empdat1 <- read.csv(paste("../data/empirical data/data/", 
-                              sample(empfiles, 1), sep=""))
-    # get mean of an empirical trait
+    empdat1 <- read.csv(paste("../data/empirical data/data/", sample(empfiles, 1), sep=""))
     mu1 <- mean(empdat1$mean)
-    # get the range of the same trait
     rng1 <- range(empdat1$mean)
-
+    # se1 <- mean(empdat1$SE)
     #trait 2 basis
-    empdat2 <- read.csv(paste("../data/empirical data/data/", 
-                              sample(empfiles, 1), sep=""))
+    empdat2 <- read.csv(paste("../data/empirical data/data/", sample(empfiles, 1), sep=""))
     mu2 <- mean(empdat2$mean)
     rng2 <- range(empdat2$mean)
     # se2 <- mean(empdat2$SE)
@@ -173,7 +149,6 @@ for(i in 1:length(simdata)){
     for(m in 1:length(dat)){
       res[[m]] <- getVals(LCA(data=dat[[m]], SCS="NSC", 
                           keep.pars = keep.pars, messages=F))
-      
       results[(starts[1]+m), colnames(results) %in% res[[m]][[1]]] <- res[[m]][[2]]
       if(m == 1){
         results$beta[(starts[1]+1)] <- bet1
