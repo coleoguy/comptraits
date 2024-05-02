@@ -59,7 +59,7 @@ dif <- function(x){
   return(z)
 }
 
-# getVals conditions on the infernce being significant.
+# getVals conditions on the inference being significant.
 getVals <- function(x){
   foo <- x$estimates[,c(F, x$varimp[,2]>.5), drop=F]
   zed <- (abs(as.numeric(foo[1,]))-as.numeric(foo[2,])) > 0
@@ -82,7 +82,7 @@ n <- 20
 simdata <- vector(mode = "list", length = 6)
 names(simdata) <- c("AA", "AD", "AE", "DD", "DE", "EE")
 
-# these names indicate the architecture of the traits being combined
+# these abbreviations indicate the architecture of the traits being combined
 # if AA, use Aa for both simple datasets
 # if AD, use Aa for one dataset and Ad for the other
 # if AE, use Aa for one dataset and sample (AaAa, AaAd, AdAd) for the other
@@ -90,7 +90,9 @@ names(simdata) <- c("AA", "AD", "AE", "DD", "DE", "EE")
 # if DE, use Ad for one dataset and sample (AaAa, AaAd, AdAd) for the other
 # if EE, sample (AaAa, AaAd, AdAd) twice, one for each dataset
 
+# files for the 1606 empirical datasets from Burch et al., 2024 
 empfiles <- list.files("../data/empirical data/data/")
+
 # cycle through all genetic architectures
 for(i in 1:length(simdata)){
   # marginalize across empirical characters, 
@@ -114,19 +116,20 @@ for(i in 1:length(simdata)){
     #trait 1 basis
     empdat1 <- read.csv(paste("../data/empirical data/data/", 
                               sample(empfiles, 1), sep=""))
-    # get mean of an empirical trait
+    # get mean of the first empirical trait
     mu1 <- mean(empdat1$mean)
-    # get the range of the same trait
+    # get the range of the first empirical trait
     rng1 <- range(empdat1$mean)
 
     #trait 2 basis
     empdat2 <- read.csv(paste("../data/empirical data/data/", 
                               sample(empfiles, 1), sep=""))
+    # get the mean of the second empirical trait
     mu2 <- mean(empdat2$mean)
+    # get the range of the second empirical trait
     rng2 <- range(empdat2$mean)
-    # se2 <- mean(empdat2$SE)
     
-    # simulate simple traits
+    # simulate elemental traits
     bet1 <- dif(rng1)/dif(cmat1)
     bet2 <- dif(rng2)/dif(cmat2)
     for(k in 1:nrow(cmat)){
@@ -142,13 +145,15 @@ for(i in 1:length(simdata)){
                       n=n)
       simp2$mean[k]<- mean(cohort2)
       simp2$SE[k] <- sd(cohort2)/sqrt(n)
-      # generate 5 types of functions
+      # generate 6 types of functions
       # comp1: quotient _ x/y
       # comp2: quotient _ y/x
       # comp3: product _ x * y
       # comp4: sum _ x + y
       # comp5: difference _ x - y
       # comp6: difference _ y - x
+      
+      # generate the compound traits based on each of the 6 functions
       comp1$mean[k] <- mean(cohort1/cohort2)
       comp1$SE[k] <- sd(cohort1/cohort2) / sqrt(n)
       
