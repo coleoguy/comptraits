@@ -134,17 +134,17 @@ for(i in 1:length(simdata)){
     bet2 <- dif(rng2)/dif(cmat2)
     for(k in 1:nrow(cmat)){
       # trait 1
-      cohort1 <- rnorm(mean = mu1+bet1*cmat1[k], 
+      trait1 <- rnorm(mean = mu1+bet1*cmat1[k], 
                       sd = abs(mu1*sdp), 
                       n=n)
-      simp1$mean[k]<- mean(cohort1)
-      simp1$SE[k] <- sd(cohort1)/sqrt(n)
+      simp1$mean[k]<- mean(trait1)
+      simp1$SE[k] <- sd(trait1)/sqrt(n)
       # trait 2
-      cohort2 <- rnorm(mean = mu2+bet2*cmat2[k], 
+      trait2 <- rnorm(mean = mu2+bet2*cmat2[k], 
                       sd = abs(mu2*sdp), 
                       n=n)
-      simp2$mean[k]<- mean(cohort2)
-      simp2$SE[k] <- sd(cohort2)/sqrt(n)
+      simp2$mean[k]<- mean(trait2)
+      simp2$SE[k] <- sd(trait2)/sqrt(n)
       # generate 6 types of functions
       # comp1: quotient _ x/y
       # comp2: quotient _ y/x
@@ -154,23 +154,23 @@ for(i in 1:length(simdata)){
       # comp6: difference _ y - x
       
       # generate the compound traits based on each of the 6 functions
-      comp1$mean[k] <- mean(cohort1/cohort2)
-      comp1$SE[k] <- sd(cohort1/cohort2) / sqrt(n)
+      comp1$mean[k] <- mean(trait1/trait2)
+      comp1$SE[k] <- sd(trait1/trait2) / sqrt(n)
       
-      comp2$mean[k] <- mean(cohort2/cohort1)
-      comp2$SE[k] <- sd(cohort2/cohort1) / sqrt(n)
+      comp2$mean[k] <- mean(trait2/trait1)
+      comp2$SE[k] <- sd(trait2/trait1) / sqrt(n)
       
-      comp3$mean[k] <- mean(cohort1*cohort2)
-      comp3$SE[k] <- sd(cohort1*cohort2) / sqrt(n)
+      comp3$mean[k] <- mean(trait1*trait2)
+      comp3$SE[k] <- sd(trait1*trait2) / sqrt(n)
       
-      comp4$mean[k] <- mean(cohort1+cohort2)
-      comp4$SE[k] <- sd(cohort1+cohort2) / sqrt(n)
+      comp4$mean[k] <- mean(trait1+trait2)
+      comp4$SE[k] <- sd(trait1+trait2) / sqrt(n)
       
-      comp5$mean[k] <- mean(cohort1-cohort2)
-      comp5$SE[k] <- sd(cohort1-cohort2) / sqrt(n)
+      comp5$mean[k] <- mean(trait1-trait2)
+      comp5$SE[k] <- sd(trait1-trait2) / sqrt(n)
       
-      comp6$mean[k] <- mean(cohort2-cohort1)
-      comp6$SE[k] <- sd(cohort2-cohort1) / sqrt(n)
+      comp6$mean[k] <- mean(trait2-trait1)
+      comp6$SE[k] <- sd(trait2-trait1) / sqrt(n)
     }
     keep.pars <- c("Aa","Ad","AaAa","AaAd","AdAd")
     dat <- list(simp1,simp2,comp1,comp2,comp3,comp4,comp5,comp6)
@@ -198,5 +198,5 @@ for(i in 1:length(simdata)){
   }
 }
     
-
+# save results of simulation into csv file
 write.csv(results,file="../results/sim.results.csv", row.names = F)

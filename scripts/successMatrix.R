@@ -46,4 +46,4 @@ for(i in 1:(length(starts)-1)){
   }
 }
 succ.matrix[,3:8] <- round(succ.matrix[,3:8] / (succ.matrix$total/6), digits=2)
-write.csv(succ.matrix, "../results/succ.matrix.csv", row.names = F)
+#write.csv(succ.matrix, "../results/succ.matrix.csv", row.names = F)
