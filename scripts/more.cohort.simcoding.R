@@ -201,4 +201,4 @@ for(i in 1:length(simdata)){
 }
 
 # save results of simulation into csv file
-write.csv(results,file="../results/more.cohort.sim.results.csv", row.names = F)
+#write.csv(results,file="../results/more.cohort.sim.results.csv", row.names = F)
