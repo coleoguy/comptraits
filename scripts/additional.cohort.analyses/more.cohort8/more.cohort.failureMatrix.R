@@ -11,7 +11,7 @@ dat <- read.csv("../results/more.cohort.sim.results-simplified-archs.csv")
 # grab the rows that each dataset starts on
 starts <- seq(from=1, by=8, length.out=6001)
 
-# container for adding up failesses
+# container for adding up fails
 more.cohort.fail.matrix <- as.data.frame(matrix(0, nrow = 18, ncol = 9))
 more.cohort.fail.matrix[, 1] <- c("a", "a", "d", "a", "a", "a", "d", "d", "d", "aa", "aa", "aa", "ad", "ad", "ad", "dd", "dd", "dd")
 more.cohort.fail.matrix[, 2] <- c("a", "d", "d", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd")
@@ -25,8 +25,8 @@ for(i in 1:(length(starts)-1)){
   arch1 <- which(colnames(foo) == foo[1,1])
   arch2 <- which(colnames(foo) == foo[2,1])
   # check each row of the current dataset where each row corresponds to 
-  # a generating function. We want to count any row as a failess only if
-  # it has the underlying elemental architecture and nothing eles
+  # a generating function. We want to count any row as a fail only if
+  # it has the underlying elemental architecture and nothing else
   for(j in 3:8){
     a <- is.na(foo[j,arch1])
     b <- is.na(foo[j,arch2])

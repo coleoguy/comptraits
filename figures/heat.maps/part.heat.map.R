@@ -1,4 +1,4 @@
-#Turn table into colored matrix
+#Turn partial matrix into colored heatmap for original (5) cohort set
 
 library(ggplot2)
 library(viridis)

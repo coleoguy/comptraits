@@ -1,10 +1,10 @@
-#Turn success matrix into colored heatmap for original (5) cohort set
+#Turn failure matrix into colored heatmap for jd (15) cohort set
 
 library(ggplot2)
 library(viridis)
 
 #Read in succ.matrix.csv
-dat <- read.csv("succ.matrix.csv")
+dat <- read.csv("../../../results/additional.cohorts.results/jd.cohorts15/jd.fail.matrix.csv")
 
 #change column names to display correct functions
 colnames(dat) <- c("first element","second element","1/2","2/1","1*2","1+2","1-2","2-1","total")
@@ -23,25 +23,23 @@ dat <- dat[, -1]
 dat <- dat[, c(8, 1:7)]
 
 #remove "total" column
-succ.matrix <- dat[,1:7]
+fail.matrix <- dat[,1:7]
 
 # Get row and column names
-row_names <- rownames(succ.matrix)
-col_names <- colnames(succ.matrix)
+row_names <- rownames(fail.matrix)
+col_names <- colnames(fail.matrix)
 
 # Melt the table to long format
 library(reshape2)
 
-succ.matrix.long <- melt(succ.matrix)
+fail.matrix.long <- melt(fail.matrix)
 
 
 # Create the plot
-ggplot(succ.matrix.long, aes(variable, Elemental.Architectures, fill = value)) +
+ggplot(fail.matrix.long, aes(variable, Elemental.Architectures, fill = value)) +
   geom_tile() +
   geom_text(aes(label = value), color = "white") + #added numbers to cells#
   scale_fill_viridis(name = "Value", limits = c(0, 1)) +
   labs(x = "Functions", y = "Elemental Architectures") +
-  ggtitle("Success")+
+  ggtitle("Failure")+
   theme_minimal() 
-
-

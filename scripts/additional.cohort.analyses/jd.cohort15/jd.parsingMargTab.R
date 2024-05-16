@@ -1,15 +1,16 @@
 # Jorja Burch - jorjaelliott@tamu.edu
 
-# this script parses the results differently than the parsing.results.R script.
-# this script (parsingMargTab.R) parses the results into "marginalized" tables, 
+# this script parses the results differently than the jd.parsing.results.R script.
+# this script (jd.parsingMargTab.R) parses the results into "marginalized" tables, 
 # producing 5 tables that show the "true" and "false" positives when a specific
 # architecture is ONE of the elemental architectures.
 # this script does not account for both architectures in the compound trait, 
 # only one of the architectures. 
 # (if interested in the results between a specific pair of elemental architectures, 
-# use the "parsing.results.R" script.)
+# use the "jd.parsing.results.R" script.)
 
-res <- read.csv("../results/sim.results.csv")
+#read in the results from the 15 cohorts simulation 
+res <- read.csv("../../../results/additional.cohorts.results/jd.cohorts15/jd.sim.results.csv")
 
 GetMargTab <- function(res, elar){
   
@@ -53,19 +54,19 @@ GetMargTab <- function(res, elar){
 }
 
 res.a <- GetMargTab(res, elar="Aa")
-#write.csv(res.a, "../results/res.a.csv")
+write.csv(res.a, "../../../results/additional.cohorts.results/jd.cohorts15/tabs.from.parsingMargTab/jd.a.tab.csv")
 
 res.d <- GetMargTab(res, elar="Ad")
-#write.csv(res.d, "../results/res.d.csv")
+write.csv(res.d, "../../../results/additional.cohorts.results/jd.cohorts15/tabs.from.parsingMargTab/jd.d.tab.csv")
 
 res.aa <- GetMargTab(res, elar="AaAa")
-#write.csv(res.aa, "../results/res.aa.csv")
+write.csv(res.aa, "../../../results/additional.cohorts.results/jd.cohorts15/tabs.from.parsingMargTab/jd.aa.tab.csv")
 
 res.ad <- GetMargTab(res, elar="AaAd")
-#write.csv(res.ad, "../results/res.ad.csv")
+write.csv(res.ad, "../../../results/additional.cohorts.results/jd.cohorts15/tabs.from.parsingMargTab/jd.ad.tab.csv")
 
 res.dd <- GetMargTab(res, elar="AdAd")
-#write.csv(res.dd, "../results/res.dd.csv")
+write.csv(res.dd, "../../../results/additional.cohorts.results/jd.cohorts15/tabs.from.parsingMargTab/jd.dd.tab.csv")
 
 
 

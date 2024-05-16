@@ -1,10 +1,10 @@
-#Turn success matrix into colored heatmap for original (5) cohort set
+#Turn success matrix into colored heatmap for jd (15) cohort set
 
 library(ggplot2)
 library(viridis)
 
 #Read in succ.matrix.csv
-dat <- read.csv("succ.matrix.csv")
+dat <- read.csv("../../../results/additional.cohorts.results/jd.cohorts15/jd.succ.matrix.csv")
 
 #change column names to display correct functions
 colnames(dat) <- c("first element","second element","1/2","2/1","1*2","1+2","1-2","2-1","total")

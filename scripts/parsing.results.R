@@ -1,3 +1,9 @@
+# Jorja Burch - jorjaelliott@tamu.edu
+
+# this script takes the results from the simcoding.R (original simulation), and it
+# parses those results into tables showing the results of each elemental trait pair
+
+# read in the original simulation results (from simcoding.R)
 res <- read.csv("../results/sim.results.csv")
 #elar1 <- "Aa"
 #elar2 <- "Aa"
@@ -27,65 +33,75 @@ GetTable <- function(res, elar1, elar2){
   return(sum.res)
 }
 
-#component traits: a & a
+#elemental traits: a & a
 a.a.res <- GetTable(res, elar1="Aa", elar2="Aa")
 write.csv(a.a.res, file="../results/a.a.tab.csv")
 
-#component traits: d & d
+#elemental traits: d & d
 d.d.res <- GetTable(res, elar1="Ad", elar2="Ad")
 write.csv(d.d.res, file="../results/d.d.tab.csv")
 
-#component traits: a & d
+#elemental traits: a & d
 a.d.res <- GetTable(res, elar1="Aa", elar2="Ad")
 write.csv(a.d.res, file="../results/a.d.tab.csv")
 
-#component traits: a & aa
+#elemental traits: a & aa
 a.aa.res <- GetTable(res, elar1="Aa", elar2="AaAa")
 write.csv(a.aa.res, file="../results/a.aa.tab.csv")
-#component traits: a & ad
+
+#elemental traits: a & ad
 a.ad.res <- GetTable(res, elar1="Aa", elar2="AaAd")
 write.csv(a.ad.res, file="../results/a.ad.tab.csv")
-#component traits: a & dd
+
+#elemental traits: a & dd
 a.dd.res <- GetTable(res, elar1="Aa", elar2="AdAd")
 write.csv(a.dd.res, file="../results/a.dd.tab.csv")
 
-#component traits: d & aa
+#elemental traits: d & aa
 d.aa.res <- GetTable(res, elar1="Ad", elar2="AaAa")
 write.csv(d.aa.res, file="../results/d.aa.tab.csv")
-#component traits: d & ad
+
+#elemental traits: d & ad
 d.ad.res <- GetTable(res, elar1="Ad", elar2="AaAd")
 write.csv(d.ad.res, file="../results/d.ad.tab.csv")
-#component traits: d & dd
+
+#elemental traits: d & dd
 d.dd.res <- GetTable(res, elar1="Ad", elar2="AdAd")
 write.csv(d.dd.res, file="../results/d.dd.tab.csv")
 
-#component traits: aa & aa
+#elemental traits: aa & aa
 aa.aa.res <- GetTable(res, elar1="AaAa", elar2="AaAa")
 write.csv(aa.aa.res, file="../results/aa.aa.tab.csv")
-#component traits: aa & ad
+
+#elemental traits: aa & ad
 aa.ad.res <- GetTable(res, elar1="AaAa", elar2="AaAd")
 write.csv(aa.ad.res, file="../results/aa.ad.tab.csv")
-#component traits: aa & dd
+
+#elemental traits: aa & dd
 aa.dd.res <- GetTable(res, elar1="AaAa", elar2="AdAd")
 write.csv(aa.dd.res, file="../results/aa.dd.tab.csv")
 
-#component traits: ad & aa
+#elemental traits: ad & aa
 ad.aa.res <- GetTable(res, elar1="AaAd", elar2="AaAa")
 write.csv(ad.aa.res, file="../results/ad.aa.tab.csv")
-#component traits: ad & ad
+
+#elemental traits: ad & ad
 ad.ad.res <- GetTable(res, elar1="AaAd", elar2="AaAd")
 write.csv(ad.ad.res, file="../results/ad.ad.tab.csv")
-#component traits: ad & dd
+
+#elemental traits: ad & dd
 ad.dd.res <- GetTable(res, elar1="AaAd", elar2="AdAd")
 write.csv(ad.dd.res, file="../results/ad.dd.tab.csv")
 
-#component traits: dd & aa
+#elemental traits: dd & aa
 dd.aa.res <- GetTable(res, elar1="AdAd", elar2="AaAa")
 write.csv(dd.aa.res, file="../results/dd.aa.tab.csv")
-#component traits: dd & ad
+
+#elemental traits: dd & ad
 dd.ad.res <- GetTable(res, elar1="AdAd", elar2="AaAd")
 write.csv(dd.ad.res, file="../results/dd.ad.tab.csv")
-#component traits: dd & dd
+
+#elemental traits: dd & dd
 dd.dd.res <- GetTable(res, elar1="AdAd", elar2="AdAd")
 write.csv(dd.dd.res, file="../results/dd.dd.tab.csv")
 
