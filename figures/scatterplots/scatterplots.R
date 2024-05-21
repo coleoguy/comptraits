@@ -8,8 +8,8 @@
 ### JD (15-chort) success vs Original (5-chort) success ###
 
 # read in the success matrix for jd sim and the original sim
-jd.succ <- read.csv("../results/additional.cohorts.results/jd.cohorts15/jd.succ.matrix.csv")
-orig.succ <- read.csv("../results/succ.matrix.csv")
+jd.succ <- read.csv("../../results/additional.cohorts.results/jd.cohorts15/jd.succ.matrix.csv")
+orig.succ <- read.csv("../../results/succ.matrix.csv")
 
 # subset the matricies to exclude the first two columns (labeling the archs) 
 # and the last column (totals for each row)

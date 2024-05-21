@@ -1,3 +1,8 @@
+# Jorja Burch - jorjaelliott@tamu.edu
+
+# this script generates the one element figures, which come from tables generated 
+# from the ParsingMargTab.R script.
+
 library(ggplot2)
 library(viridis)
 

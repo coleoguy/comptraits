@@ -1,4 +1,6 @@
-#Turn partial matrix into colored heatmap for jd (15) cohort set
+# Jorja Burch - jorjaelliott@tamu.edu
+
+# this script turns partial matrix into colored heatmap for jd (15) cohort set
 
 library(ggplot2)
 library(viridis)
