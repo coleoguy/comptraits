@@ -1,4 +1,6 @@
-#Turn success matrix into colored heatmap for original (5) cohort set
+# Jorja Burch - jorjaelliott@tamu.edu
+
+# this script turns success matrix into colored heatmap for original (5) cohort set
 
 library(ggplot2)
 library(viridis)

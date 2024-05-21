@@ -1,3 +1,5 @@
+# Jorja Burch - jorjaelliott@tamu.edu
+
 # this script generates the figures for each pair of elemental traits, 
 # based on the tables from the parsing.results.R script
 

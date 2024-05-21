@@ -1,3 +1,8 @@
+# Jorja Burch - jorjaelliott@tamu.edu
+
+# this script generates the two element figures, which come from tables generated 
+# from the parsing.results.R script
+
 library(ggplot2)
 library(viridis)
 

@@ -1,3 +1,8 @@
+# Jorja Burch - jorjaelliott@tamu.edu
+
+# this script takes the results from the more.cohort.simcoding.R (8-cohort simulation), and it
+# parses those results into tables showing the results of each elemental trait pair
+
 res <- read.csv("../results/more.cohorts/more.cohort.sim.results.csv")
 #elar1 <- "Aa"
 #elar2 <- "Aa"

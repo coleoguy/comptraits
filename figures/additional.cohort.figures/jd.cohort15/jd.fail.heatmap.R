@@ -1,4 +1,6 @@
-#Turn failure matrix into colored heatmap for jd (15) cohort set
+# Jorja Burch - jorjaelliott@tamu.edu
+
+# this script turns failure matrix into colored heatmap for jd (15) cohort set
 
 library(ggplot2)
 library(viridis)
