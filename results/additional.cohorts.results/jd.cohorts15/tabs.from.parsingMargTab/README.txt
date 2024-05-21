@@ -1,0 +1,1 @@
+The script jd.parsingMargTab.R produces these 5 one element tables that display the inferred genetic architectures for 6 possible combining functions when only one elemental trait is accounted for.

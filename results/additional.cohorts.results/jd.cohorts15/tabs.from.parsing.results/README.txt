@@ -1,0 +1,1 @@
+The script jd.parsing.results.R produces these 18 two element tables that display the inferred genetic architectures for 6 possible combining functions when both elemental traits are accounted for.

@@ -1,0 +1,1 @@
+This folder contains the folders, jd.cohorts15 and more.cohorts8, which contain results for datasets with 15 and 8 cohorts, respectively. 
