@@ -67,6 +67,9 @@ getVals <- function(x){
   return(list(colnames(foo), as.numeric(foo[1,])))
 }
 
+# store range to understand multiplicative compound traits
+comprange <- c()
+
 #results container
 results <- as.data.frame(matrix(NA,48000, 7))
 colnames(results) <- c("trait","beta","Aa","Ad","AaAa","AaAd","AdAd")
@@ -176,6 +179,9 @@ for(i in 1:length(simdata)){
     dat <- list(simp1,simp2,comp1,comp2,comp3,comp4,comp5,comp6)
     res <- list()
     for(m in 1:length(dat)){
+      if(m==5){
+        comprange <- c(comprange, range(dat[[m]]$mean))
+      }
       res[[m]] <- getVals(LCA(data=dat[[m]], SCS="NSC", 
                           keep.pars = keep.pars, messages=F))
       
