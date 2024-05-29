@@ -179,8 +179,10 @@ for(i in 1:length(simdata)){
     dat <- list(simp1,simp2,comp1,comp2,comp3,comp4,comp5,comp6)
     res <- list()
     for(m in 1:length(dat)){
+      # storing the difference in the range of phenotypes for the multiplicative compound trait 
       if(m==5){
-        comprange <- c(comprange, range(dat[[m]]$mean))
+        rg <- range(dat[[m]]$mean)
+        comprange <- c(comprange, rg[2]-rg[1])
       }
       res[[m]] <- getVals(LCA(data=dat[[m]], SCS="NSC", 
                           keep.pars = keep.pars, messages=F))
