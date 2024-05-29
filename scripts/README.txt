@@ -15,3 +15,7 @@ simcoding.R: this script pulls data from an empirical study of traits to inform 
 successMatrix.R: this script creates a matrix displaying the "success rate" for inferring the correct architectures under the six possible combining functions of all simple architectures.
 
 t.tests.R: this script runs a t-test for fewer cohorts (5) versus more cohorts (8) and fewer cohorts (5) versus many "jd" cohorts (15) for the success, partial success, and failure matrices. 
+
+calc_percerr.R: this script calculates the percent error for how well LCA infers the correct magnitudes of the architectures based on an expected beta coeff for each trait
+
+mean_percerr.R: this script calculates the mean percent error for various items within the res_a_percerr.csv file

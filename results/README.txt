@@ -8,7 +8,7 @@ fail.matrix.csv: this file is a table displaying the "failure rate" for inferrin
 
 part.matrix.csv: this file is a table displaying the "partial success rate" for inferring the correct architectures under the six possible combining functions of all simple architectures.
 
-res_betas.csv: this file is a table that takes the original sim.results and adds in the calculated beta coefficients for each defining function. 
+res_betas.csv: this file is a table that takes the original sim.results and adds in the calculated beta coefficients for each defining function. Beta coefficients not calculated for division compound traits
 
 sim.results.csv: this file is a table displaying the genetic architectures and corresponding beta coefficients that were inferred for each combination of simple architectures through 6 different combining functions.
 
@@ -16,3 +16,6 @@ sim.results-simplified-archs.csv: this file is a modified version of sim.results
 
 succ.matrix.csv: this file is a table displaying the "success rate" for inferring the correct architectures under the six possible combining functions of all simple architectures.
 
+mult_comprange.csv: this file holds all of the differences in range between the high and low phenotype for each multiplicative compound trait; stored from the sim (5-cohort) 
+
+res_a_percerr.csv: percent error calculated for compound traits where both elemental traits are additive

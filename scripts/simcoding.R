@@ -210,4 +210,4 @@ for(i in 1:length(simdata)){
 #write.csv(results,file="../results/sim.results.csv", row.names = F)
 
 # save diff of ranges to use to calculate exp beta coeff for multiplicative compound traits
-write.csv(comprange, file = "../results/mult_comprange.csv", row.names = F)
+#write.csv(comprange, file = "../results/mult_comprange.csv", row.names = F)
