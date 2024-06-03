@@ -3,7 +3,8 @@
 # this script reads in the results from the original (5-cohort) simulation 
 # and calculates the expected beta coefficients for each of the compound traits, 
 # based on their defining function. beta coefficients are not calculated for the division
-# traits
+# traits. beta coefficients are only calculated for compound traits where the two 
+# elemental traits are the same (e.g., a & a, d & d, NOT a & d, etc.)
 
 library(data.table)
 
@@ -29,19 +30,23 @@ for (i in seq(1, nrow(res_betas), by = 8)) {
   
   start_row <- i
   
-  beta1 <- as.numeric(res_betas[start_row, 2])
-  beta2 <- as.numeric(res_betas[start_row + 1, 2])
-  
-  # Update the res_betas data frame
-  # res_betas[start_row + 2, 2] <- beta1 / beta2 -- do not calculate for division
-  # res_betas[start_row + 3, 2] <- beta2 / beta1 -- do not calculate for division
-  res_betas[start_row + 4, 2] <- multrgs[multrgs_counter, 1]
-  res_betas[start_row + 5, 2] <- beta1 + beta2
-  res_betas[start_row + 6, 2] <- beta1 - beta2
-  res_betas[start_row + 7, 2] <- beta2 - beta1
-  
-  # Increment the multrgs counter
-  multrgs_counter <- multrgs_counter + 1
+  if (res_betas[start_row, "trait"] == res_betas[start_row + 1, "trait"]){
+    
+    beta1 <- as.numeric(res_betas[start_row, 2])
+    beta2 <- as.numeric(res_betas[start_row + 1, 2])
+    
+    # Update the res_betas data frame
+    # res_betas[start_row + 2, 2] <- beta1 / beta2 -- do not calculate for division
+    # res_betas[start_row + 3, 2] <- beta2 / beta1 -- do not calculate for division
+    res_betas[start_row + 4, 2] <- multrgs[multrgs_counter, 1]
+    res_betas[start_row + 5, 2] <- beta1 + beta2
+    res_betas[start_row + 6, 2] <- beta1 - beta2
+    res_betas[start_row + 7, 2] <- beta2 - beta1
+    
+    # Increment the multrgs counter
+    multrgs_counter <- multrgs_counter + 1
+    
+  }
 }
 
 #write.csv(res_betas, "../results/res_betas.csv")
