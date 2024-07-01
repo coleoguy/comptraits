@@ -5,11 +5,11 @@
 # inferring the correct (original) architectures under the six possible functions.
 # "failure" is classified as LCA failing to infer either one OR both elemental architectures
 
-# read in the data
-dat <- read.csv("../results/sim.results-simplified-archs.csv")
+# read in the data (results with small betas removed)
+dat <- read.csv("../results/rm_sm_betas_results.csv")
 
 # grab the rows that each dataset starts on
-starts <- seq(from=1, by=8, length.out=6001)
+starts <- seq(from=1, by=8, length.out=5991)
 
 # container for adding up failesses
 fail.matrix <- as.data.frame(matrix(0, nrow = 18, ncol = 9))
@@ -47,4 +47,4 @@ for(i in 1:(length(starts)-1)){
   }
 }
 fail.matrix[,3:8] <- round(fail.matrix[,3:8] / (fail.matrix$total/6), digits=2)
-write.csv(fail.matrix, "../results/fail.matrix.csv", row.names = F)
+#write.csv(fail.matrix, "../results/fail.matrix.csv", row.names = F)
