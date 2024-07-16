@@ -4,7 +4,7 @@ library(ggplot2)
 library(viridis)
 
 #Read in succ.matrix.csv
-dat <- read.csv("../results/partial.matrix.csv")
+dat <- read.csv("../results/partial.ma*trix.csv")
 
 #change column names to display correct functions
 colnames(dat) <- c("first element","second element","1/2","2/1","1*2","1+2","1-2","2-1","total")

@@ -12,13 +12,16 @@
 
 library(data.table)
 
-# Read the CSV file
-data <- read.csv("../results/res_betas.csv")
+# read in the results file where beta coeff have been calculated for compound 
+# traits where the elemental traits are the same, and sm betas have been removed 
+data <- read.csv("../results/res_betas_rmsmbetas.csv")
+data <- data[,-1] #removing extra numbering column
 
 ############## a & a ############## 
-# subset the results to be only the first 8000 rows, where the two elemental 
-# traits are additive and additive
-data_a <- data[1:8000,]
+# subset the results to be only the first 7960 rows, where the two elemental 
+# traits are additive and additive (less than 8000 due to removing sections 
+# where elemental beta < 0.002)
+data_a <- data[1:7960,]
 
 # change all NAs to be zeros
 data_a[is.na(data_a)] <- 0
@@ -39,7 +42,7 @@ for (i in 1:nrow(data_a)) {
     expected <- c(expected_value, rep(0, 4))
     
     # extract the observed values from columns 4-8
-    observed_values <- as.numeric(data_a[i, 4:8])
+    observed_values <- as.numeric(data_a[i, 3:7])
     
     # calculate the percent error for each pair of observed and expected values
     percent_errors_row <- ifelse(expected == 0, Inf, (abs(sum(observed_values - expected)) / abs(sum(expected))) * 100)
@@ -63,11 +66,6 @@ data_a$percent_error <- percent_errors
 ## ELEMENTAL TRAIT Aa ##
 # Filter rows where the "trait" column is "Aa"
 filt_data_a <- data_a[data_a$trait == "Aa", ]
-#filt_data_a <- data_a[-1354,]
-#filt_data_a <- filt_data_a[-2482,]
-#filt_data_a <- filt_data_a[filt_data_a$percent_error <= 100, ] #pe=12.9%
-#filt_data_a <- filt_data_a[filt_data_a$percent_error <= 200, ] #pe=15.8%
-filt_data_a <- filt_data_a[filt_data_a$percent_error <= 80000, ] #pe=20.65%
 
 # Calculate the mean of the "percent_error" column for the filtered rows
 mean_pe_a <- mean(filt_data_a$percent_error, na.rm = TRUE)
@@ -80,7 +78,7 @@ filt_data_add <- data_a[data_a$trait == "Aa + Aa", ]
 
 # Calculate the mean of the "percent_error" column for the filtered rows
 mean_pe_add <- mean(filt_data_add$percent_error, na.rm = TRUE)
-# 13.42%
+# 13.47%
 
 
 ## DEFINING FUNCTION: SUBTRACTION ##
@@ -89,7 +87,7 @@ filt_data_sub <- data_a[data_a$trait == "Aa - Aa", ]
 
 # Calculate the mean of the "percent_error" column for the filtered rows
 mean_pe_sub <- mean(filt_data_sub$percent_error, na.rm = TRUE)
-# 60.48%
+# 60.76%
 
 
 ## DEFINING FUNCTION: MULTIPLICATION ##
@@ -98,14 +96,14 @@ filt_data_mult <- data_a[data_a$trait == "Aa * Aa", ]
 
 # Calculate the mean of the "percent_error" column for the filtered rows
 mean_pe_mult <- mean(filt_data_mult$percent_error, na.rm = TRUE)
-# 15.72%
+# 15.62%
 ############## a & a ############## 
 
 
 ############## d & d ############## 
-# subset the results to be only rows 24001 through 32000, where the two elemental 
+# subset the results to be only rows 23945 through 31936, where the two elemental 
 # traits are dominance and dominance
-data_d <- data[24001:32000,]
+data_d <- data[23945:31936,]
 
 # change all NAs to be zeros
 data_d[is.na(data_d)] <- 0
@@ -126,7 +124,7 @@ for (i in 1:nrow(data_d)) {
     expected <- c(0, expected_value, rep(0, 3))
     
     # extract the observed values from columns 4-8
-    observed_values <- as.numeric(data_d[i, 4:8])
+    observed_values <- as.numeric(data_d[i, 3:7])
     
     # calculate the percent error for each pair of observed and expected values
     percent_errors_row <- ifelse(expected == 0, Inf, (abs(sum(observed_values - expected)) / abs(sum(expected))) * 100)
@@ -153,7 +151,7 @@ filt_data_d <- data_d[data_d$trait == "Ad", ]
 
 # Calculate the mean of the "percent_error" column for the filtered rows
 mean_pe_d <- mean(filt_data_d$percent_error, na.rm = TRUE)
-# 32.2%
+# 32.13%
 
 
 ## DEFINING FUNCTION: ADDITIVE ##
@@ -162,7 +160,7 @@ filt_data_d_add <- data_d[data_d$trait == "Ad + Ad", ]
 
 # Calculate the mean of the "percent_error" column for the filtered rows
 mean_pe_d_add <- mean(filt_data_d_add$percent_error, na.rm = TRUE)
-# 21.7%
+# 21.65%
 
 
 ## DEFINING FUNCTION: SUBTRACTION ##
@@ -171,16 +169,17 @@ filt_data_d_sub <- data_d[data_d$trait == "Ad - Ad", ]
 
 # Calculate the mean of the "percent_error" column for the filtered rows
 mean_pe_d_sub <- mean(filt_data_d_sub$percent_error, na.rm = TRUE)
-# 54%
+# 54.0%
 
 
 ## DEFINING FUNCTION: MULTIPLICATION ##
 # Filter rows where the "trait" column is "Ad * Ad"
 filt_data_d_mult <- data_d[data_d$trait == "Ad * Ad", ]
 
+
 # Calculate the mean of the "percent_error" column for the filtered rows
 mean_pe_d_mult <- mean(filt_data_d_mult$percent_error, na.rm = TRUE)
-# 85.1%
+# %
 ############## d & d ############## 
 
 
@@ -291,7 +290,6 @@ plot(x=filt_data_a$beta, y=filt_data_a$percent_error, xlim=c(0,0.5))
 
 # dominance
 plot(x=filt_data_d$beta, y=filt_data_d$percent_error, pch=16, cex=.05)
-
 
 
 
