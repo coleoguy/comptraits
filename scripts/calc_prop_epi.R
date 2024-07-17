@@ -45,6 +45,20 @@ for (i in 1:nrow(dat_aamult)) {
   }
 }
 # 411/995
+
+
+# DIVISION #
+dat_aadiv <- dat[dat$trait == "a / a", ] 
+
+counter <- 0
+
+for (i in 1:nrow(dat_aadiv)) {
+  # Check if there is a value in at least one of the epistasis columns
+  if (!is.na(dat_aadiv[i, 5]) | !is.na(dat_aadiv[i, 6]) | !is.na(dat_aadiv[i, 7])) {
+    counter <- counter + 1
+  }
+}
+# 566/1990
 ##### elemental traits: a & a #####
 
 ##### elemental traits: a & d #####
@@ -63,7 +77,7 @@ for (i in 1:nrow(dat_adplus)) {
 
 
 # SUBTRACTION #
-dat_adsub <- dat[dat$trait == "a - d", ] 
+dat_adsub <- dat[dat$trait %in% c("a - d", "d - a"), ] 
 
 counter <- 0
 
@@ -73,7 +87,7 @@ for (i in 1:nrow(dat_adsub)) {
     counter <- counter + 1
   }
 }
-# 214/998
+# 428/1996
 
 
 # MULTIPLICATION #
@@ -88,6 +102,20 @@ for (i in 1:nrow(dat_admult)) {
   }
 }
 # 229/998
+
+
+# DIVISION #
+dat_addiv <- dat[dat$trait %in% c("a / d", "d / a"), ] 
+
+counter <- 0
+
+for (i in 1:nrow(dat_addiv)) {
+  # Check if there is a value in at least one of the epistasis columns
+  if (!is.na(dat_addiv[i, 5]) | !is.na(dat_addiv[i, 6]) | !is.na(dat_addiv[i, 7])) {
+    counter <- counter + 1
+  }
+}
+# 680/1996 
 ##### elemental traits: a & d #####
 
 ##### elemental traits: d & d #####
@@ -130,6 +158,20 @@ for (i in 1:nrow(dat_ddmult)) {
   }
 }
 # 367/999
+
+
+# DIVISION #
+dat_dddiv <- dat[dat$trait == "d / d", ] 
+
+counter <- 0
+
+for (i in 1:nrow(dat_dddiv)) {
+  # Check if there is a value in at least one of the epistasis columns
+  if (!is.na(dat_dddiv[i, 5]) | !is.na(dat_dddiv[i, 6]) | !is.na(dat_dddiv[i, 7])) {
+    counter <- counter + 1
+  }
+}
+# 1182/1998
 ##### elemental traits: d & d #####
 
 
