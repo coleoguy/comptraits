@@ -9,3 +9,5 @@ jd.partialMatrix.R: this script creates a matrix of the "partial success rate" f
 jd.simcoding.R: this script pulls data from an empirical study of traits to inform the generation of simulated data and runs LCA on the simulated data using 15 cohorts and looking at additive, dominance, and epistatic genetic architectures. it writes a results file containing the genetic architectures inferred for the data.  
 
 jd.successMatrix.R: this script creates a matrix of the "success rate" for inferring the correct architectures under the six possible combining functions of all simple architectures in data with 15 cohorts.
+
+5v15_t.test.R: this script calculates if there is a statistically significant difference between the "success" for a 5 cohort set and a 15 cohort set (i.e., determining effect of cohort size)

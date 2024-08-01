@@ -3,19 +3,20 @@
 # This script creates a matrix where each row represents the possible combinations of 
 # two elemental architectures, and each column represents the "failure rate" for
 # inferring the correct (original) architectures under the six possible functions.
-# "failure" is classified as LCA failing to infer either one OR both elemental architectures
+# "failure" is classified as LCA failing to infer either one OR both elemental architectures.
+# this script is run on the 15 cohort results file where the <0.002 betas have been removed
 
 # read in the data
-dat <- read.csv("../../../results/additional.cohorts.results/jd.cohorts15/jd.sim.results-simplified-archs.csv")
+dat <- read.csv("../../../results/additional.cohorts.results/15cohorts/jd_15coh_rm_sm_betas_res.csv")
 
 # grab the rows that each dataset starts on
-starts <- seq(from=1, by=8, length.out=6001)
+starts <- seq(from=1, by=8, length.out=5991)
 
-# container for adding up fails
-jd.fail.matrix <- as.data.frame(matrix(0, nrow = 18, ncol = 9))
-jd.fail.matrix[, 1] <- c("a", "a", "d", "a", "a", "a", "d", "d", "d", "aa", "aa", "aa", "ad", "ad", "ad", "dd", "dd", "dd")
-jd.fail.matrix[, 2] <- c("a", "d", "d", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd")
-colnames(jd.fail.matrix) <- c("first element", "second element", "1/2", "2/1", "1*2", "1+2", "1-2", "2-1", "total")
+# container for adding up failesses
+fail.matrix <- as.data.frame(matrix(0, nrow = 18, ncol = 9))
+fail.matrix[, 1] <- c("a", "a", "d", "a", "a", "a", "d", "d", "d", "aa", "aa", "aa", "ad", "ad", "ad", "dd", "dd", "dd")
+fail.matrix[, 2] <- c("a", "d", "d", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd")
+colnames(fail.matrix) <- c("first element", "second element", "1/2", "2/1", "1*2", "1+2", "1-2", "2-1", "total")
 
 for(i in 1:(length(starts)-1)){
   # get the current dataset to evaluate
@@ -25,26 +26,26 @@ for(i in 1:(length(starts)-1)){
   arch1 <- which(colnames(foo) == foo[1,1])
   arch2 <- which(colnames(foo) == foo[2,1])
   # check each row of the current dataset where each row corresponds to 
-  # a generating function. We want to count any row as a fail only if
-  # it has the underlying elemental architecture and nothing else
+  # a generating function. We want to count any row as a failess only if
+  # it has the underlying elemental architecture and nothing eles
   for(j in 3:8){
     a <- is.na(foo[j,arch1])
     b <- is.na(foo[j,arch2])
     #falarchs <- (3:7)[!3:7 %in% c(arch1,arch2)]
     #c <- is.na(foo[j, falarchs])
-    x <- jd.fail.matrix$`first element` == foo[1,1]
-    y <- jd.fail.matrix$`second element` == foo[2,1]
+    x <- fail.matrix$`first element` == foo[1,1]
+    y <- fail.matrix$`second element` == foo[2,1]
     targ.row <- which(x+y == 2)
     if(a | b){
       print("success")
       # get the row to enter into
-      jd.fail.matrix[targ.row, j] <- jd.fail.matrix[targ.row, j] + 1
-      jd.fail.matrix[targ.row, 9] <- jd.fail.matrix[targ.row, 9] +1
+      fail.matrix[targ.row, j] <- fail.matrix[targ.row, j] + 1
+      fail.matrix[targ.row, 9] <- fail.matrix[targ.row, 9] +1
     }else{
       print("failed")
-      jd.fail.matrix[targ.row, 9] <- jd.fail.matrix[targ.row, 9] +1
+      fail.matrix[targ.row, 9] <- fail.matrix[targ.row, 9] +1
     }
   }
 }
-jd.fail.matrix[,3:8] <- round(jd.fail.matrix[,3:8] / (jd.fail.matrix$total/6), digits=2)
-write.csv(jd.fail.matrix, "../../../results/additional.cohorts.results/jd.cohorts15/jd.fail.matrix.csv", row.names = F)
+fail.matrix[,3:8] <- round(fail.matrix[,3:8] / (fail.matrix$total/6), digits=2)
+write.csv(fail.matrix, "../../../results/additional.cohorts.results/15cohorts/jd.fail.matrix.csv", row.names = F)

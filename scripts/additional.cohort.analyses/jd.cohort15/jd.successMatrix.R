@@ -2,19 +2,20 @@
 
 # This script creates a matrix where each row represents the possible combinations of 
 # two elemental architectures, and each column represents the "success rate" for
-# inferring the correct (original) architectures under the six possible functions.
+# inferring the correct (original) architectures under the six possible functions. this script is run
+# on the 15 cohort results file where the <0.002 betas for elem traits have been removed
 
 # read in the data
-dat <- read.csv("../../../results/additional.cohorts.results/jd.cohorts15/jd.sim.results-simplified-archs.csv")
+dat <- read.csv("../../../results/additional.cohorts.results/15cohorts/jd_15coh_rm_sm_betas_res.csv")
 
 # grab the rows that each dataset starts on
-starts <- seq(from=1, by=8, length.out=6001)
+starts <- seq(from=1, by=8, length.out=5991)
 
 # container for adding up successes
-jd.succ.matrix <- as.data.frame(matrix(0, nrow = 18, ncol = 9))
-jd.succ.matrix[, 1] <- c("a", "a", "d", "a", "a", "a", "d", "d", "d", "aa", "aa", "aa", "ad", "ad", "ad", "dd", "dd", "dd")
-jd.succ.matrix[, 2] <- c("a", "d", "d", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd")
-colnames(jd.succ.matrix) <- c("first element", "second element", "1/2", "2/1", "1*2", "1+2", "1-2", "2-1", "total")
+succ.matrix <- as.data.frame(matrix(0, nrow = 18, ncol = 9))
+succ.matrix[, 1] <- c("a", "a", "d", "a", "a", "a", "d", "d", "d", "aa", "aa", "aa", "ad", "ad", "ad", "dd", "dd", "dd")
+succ.matrix[, 2] <- c("a", "d", "d", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd", "aa", "ad", "dd")
+colnames(succ.matrix) <- c("first element", "second element", "1/2", "2/1", "1*2", "1+2", "1-2", "2-1", "total")
 
 for(i in 1:(length(starts)-1)){
   # get the current dataset to evaluate
@@ -31,19 +32,19 @@ for(i in 1:(length(starts)-1)){
     b <- !is.na(foo[j,arch2])
     falarchs <- (3:7)[!3:7 %in% c(arch1,arch2)]
     c <- is.na(foo[j, falarchs])
-    x <- jd.succ.matrix$`first element` == foo[1,1]
-    y <- jd.succ.matrix$`second element` == foo[2,1]
+    x <- succ.matrix$`first element` == foo[1,1]
+    y <- succ.matrix$`second element` == foo[2,1]
     targ.row <- which(x+y == 2)
     if(all(c(a,b,c))){
       print("success")
       # get the row to enter into
-      jd.succ.matrix[targ.row, j] <- jd.succ.matrix[targ.row, j] + 1
-      jd.succ.matrix[targ.row, 9] <- jd.succ.matrix[targ.row, 9] +1
+      succ.matrix[targ.row, j] <- succ.matrix[targ.row, j] + 1
+      succ.matrix[targ.row, 9] <- succ.matrix[targ.row, 9] +1
     }else{
       print("failed")
-      jd.succ.matrix[targ.row, 9] <- jd.succ.matrix[targ.row, 9] +1
+      succ.matrix[targ.row, 9] <- succ.matrix[targ.row, 9] +1
     }
   }
 }
-jd.succ.matrix[,3:8] <- round(jd.succ.matrix[,3:8] / (jd.succ.matrix$total/6), digits=2)
-write.csv(jd.succ.matrix, "../../../results/additional.cohorts.results/jd.cohorts15/jd.succ.matrix.csv", row.names = F)
+succ.matrix[,3:8] <- round(succ.matrix[,3:8] / (succ.matrix$total/6), digits=2)
+write.csv(succ.matrix, "../../../results/additional.cohorts.results/15cohorts/jd.succ.matrix.csv", row.names = F)

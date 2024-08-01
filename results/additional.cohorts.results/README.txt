@@ -1,1 +1,1 @@
-This folder contains the folders, 15cohorts and 8cohorts, which contain results for datasets with 15 and 8 cohorts, respectively. 
+This folder contains the folders, 15cohorts and deprecated. Ignore deprecated. 15cohorts holds scripts to redo analysis with larger cohort set.
