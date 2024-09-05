@@ -23,11 +23,11 @@ arch1 <- "add"
 arch2 <- "dom"
 mu1 <- 30
 mu2 <- 3
-beta1 <- 7.58 
-beta2 <- 0.79
-deffnc <- "ratio"
-sigma <- .5
-opt <- 12.5
+beta1 <- 9.3 
+beta2 <- 1.65
+deffnc <- "sum"
+sigma <- 1
+opt <- 7
 single.arch <- NULL
 res <- SimulateCond(reps = reps, gen = gen, loci = loci,
                     N = N, arch1 = arch1,
