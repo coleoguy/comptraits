@@ -27,6 +27,13 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
         t2 <- mu2 + opp2 * beta2
       }
       ##### end of dominance case #####
+      ##### additive by additive case #####
+      if(single.arch == "add.x.add"){
+        
+        
+        
+      }
+      ##### end of additive by additive case #####
       
       ##### combine with defining function #####
       if(deffnc == "ratio"){
