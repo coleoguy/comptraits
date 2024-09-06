@@ -39,11 +39,42 @@ betaLGs <- seq(from=7,to=10, length.out=100)
 #mu2s <- seq(from=10,to=35, length.out=100)
 infarchs <- as.data.frame(matrix(NA, 100, 1))
 for(i in 1:100){
-  dat <- makedat(arch1 = "a", arch2 = "d", mu1 = 30, mu2 = 3, 
-                 beta2 = betaSMs[i], beta1 = betaLGs[i], deffc = "sum")
+  dat <- makedat(arch1 = "d", arch2 = "d", mu1 = 50, mu2 = 6, 
+                 beta1 = betaLGs[i], beta2 = betaSMs[i], deffc = "ratio")
   res <- LCA(data = dat[[1]], SCS = "NSC", keep.pars=c("Aa","Ad","AaAa","AaAd","AdAd"))
   #plot(res)
+  infarchs[i,1] <- paste(res$varimp[,1][res$estimates[1,2:ncol(res$estimates)] > res$estimates[2,2:ncol(res$estimates)] & res$varimp[,2] > 0.5], collapse=",")
+}
+
+
+
+
+
+
+
+
+
+
+#betaSMs <- seq(from=0.5,to=2, length.out=100)
+#betaLGs <- seq(from=7,to=10, length.out=100)
+#mu1s <- seq(from=2,to=6, length.out=100)
+#mu2s <- seq(from=10,to=35, length.out=100)
+infarchs <- as.data.frame(matrix(NA, 100, 1))
+for(i in 1:100){
+  dat <- makedat(arch1 = "d", arch2 = "d", mu1 = 50, mu2 = 6, 
+                 beta1 = 9.394, beta2 = 1.697, deffc = "ratio")
+  res <- LCA(data = dat[[1]], SCS = "NSC", keep.pars=c("Aa","Ad","AaAa","AaAd","AdAd"))
+  plot(res)
   #dat[[2]]
   #dat[[3]]
   infarchs[i,1] <- paste(res$varimp[,1][res$estimates[1,2:ncol(res$estimates)] > res$estimates[2,2:ncol(res$estimates)] & res$varimp[,2] > 0.5], collapse=",")
 }
+
+realdata <- dat[[1]]
+
+foo <- LCA(data = realdata, SCS = "NSC", keep.pars=c("Aa","Ad","AaAa","AaAd","AdAd"))
+plot.genarch(foo, min.vi=0.3)
+
+foo$estimates
+
+

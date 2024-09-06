@@ -29,11 +29,96 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
       ##### end of dominance case #####
       ##### additive by additive case #####
       if(single.arch == "add.x.add"){
+        # if sum(colSums([,i & i+10]) == 0 or 4
+          # then opp == beta/10
         
+        # if sum(colSums([,i & i+10]) == 1 or 3
+          # then opp == (0.5beta)/10
         
+        # if sum(colSums([,i & i+10]) == 2
+          # then opp == 0beta/10
+        
+        #the opp for all 10 epi pairs should be stored in a vector, then summed
+        # this value == opportunity for addxadd to impact pheno (for the whole genome)
+        
+        # this next line calculates the phenotype for the addxadd trait
+        aa.trait <- mu + opp * beta
         
       }
       ##### end of additive by additive case #####
+      ##### additive by dominance case #####
+      if(single.arch == "add.x.dom"){
+        # compress the genome into vector of values 1-4, representing each genotype 
+          # 1 is 0,0
+          # 2 is 0,1
+          # 3 is 1,0
+          # 4 is 1,1
+        
+        # compare the ith and i+10th values in vector to the following conditions:
+          # if 1,4 then opp = -0.125beta
+          # if 4,1 then opp = 0.125beta
+          # if 1,3 then opp = 0beta
+          # if 3,1 then opp = -0.25beta
+          # if 1,2 then opp = 0beta
+          # if 2,1 then opp = -0.25beta
+          # if 4,3 then opp = 0beta
+          # if 3,4 then opp = 0.25beta
+          # if 4,2 then opp = 0beta
+          # if 2,4 then opp = 0.25beta
+          # if 2,3 then opp = 0beta
+          # if 3,2 then opp = 0beta
+          # if 1,1 then opp = 0.125beta
+          # if 2,2 then opp = 0beta
+          # if 3,3 then opp = 0beta
+          # if 4,4 then opp = -0.125beta
+        
+        # this should return a vector of 10 values, divide each of these values
+        # by 10 (since each locus in the genome has the same opportunity to impact
+        # the phenotype), then add all of the values together. this is the opportunity
+        # for addxdom to impact the phenotype (for the whole genome)
+        
+        # this next line calculates the phenotype for the addxdom trait
+        ad.trait <- mu + opp * beta
+      }
+      ##### end of additive by dominance case #####
+      ##### dominance by dominance case #####
+      if(single.arch == "dom.x.dom"){
+        # compress the genome into vector of values 1-4, representing each genotype 
+          # 1 is 0,0
+          # 2 is 0,1
+          # 3 is 1,0
+          # 4 is 1,1
+        
+        # compare the ith and i+10th values in vector to the following conditions:
+          # if 1,4 then opp = 0.25beta
+          # if 4,1 then opp = 0.25beta
+          # if 1,3 then opp = -0.5beta
+          # if 3,1 then opp = -0.5beta
+          # if 1,2 then opp = -0.5beta
+          # if 2,1 then opp = -0.5beta
+          # if 4,3 then opp = -0.5beta
+          # if 3,4 then opp = -0.5beta
+          # if 4,2 then opp = -0.5beta
+          # if 2,4 then opp = -0.5beta
+          # if 2,3 then opp = 1beta
+          # if 3,2 then opp = 1beta
+          # if 1,1 then opp = 0.25beta
+          # if 2,2 then opp = 1beta
+          # if 3,3 then opp = 1beta
+          # if 4,4 then opp = 0.25beta
+        
+        # this should return a vector of 10 values, divide each of these values
+        # by 10 (since each locus in the genome has the same opportunity to impact
+        # the phenotype), then add all of the values together. this is the opportunity
+        # for domxdom to impact the phenotype (for the whole genome)
+        
+        # this next line calculates the phenotype for the domxdom trait
+        dd.trait <- mu + opp * beta
+        
+        
+      }
+      ##### end of dominance by dominance case #####
+      
       
       ##### combine with defining function #####
       if(deffnc == "ratio"){
