@@ -38,7 +38,7 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
         # if sum(colSums([,i & i+10]) == 2
           # then opp == 0beta/10
         
-        #the opp for all 10 epi pairs should be stored in a vector, then summed
+        # the opp for all 10 epi pairs should be stored in a vector, then summed.
         # this value == opportunity for addxadd to impact pheno (for the whole genome)
         
         # this next line calculates the phenotype for the addxadd trait
@@ -48,29 +48,30 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
       ##### end of additive by additive case #####
       ##### additive by dominance case #####
       if(single.arch == "add.x.dom"){
-        # compress the genome into vector of values 1-4, representing each genotype 
-          # 1 is 0,0
-          # 2 is 0,1
-          # 3 is 1,0
-          # 4 is 1,1
+        # compress the genome into vector of values 0-2, representing each genotype.
+        # this should be done by taking the colSum of each column in the genome, 
+        # and it should produce a vector of 0, 1, 2 of length 20
+          # 00 = 0
+          # 01 = 1
+          # 10 = 1
+          # 11 = 2
         
-        # compare the ith and i+10th values in vector to the following conditions:
-          # if 1,4 then opp = -0.125beta
-          # if 4,1 then opp = 0.125beta
-          # if 1,3 then opp = 0beta
-          # if 3,1 then opp = -0.25beta
-          # if 1,2 then opp = 0beta
-          # if 2,1 then opp = -0.25beta
-          # if 4,3 then opp = 0beta
-          # if 3,4 then opp = 0.25beta
-          # if 4,2 then opp = 0beta
-          # if 2,4 then opp = 0.25beta
-          # if 2,3 then opp = 0beta
-          # if 3,2 then opp = 0beta
-          # if 1,1 then opp = 0.125beta
-          # if 2,2 then opp = 0beta
-          # if 3,3 then opp = 0beta
-          # if 4,4 then opp = -0.125beta
+        # compare the ith and i+10th values in vector, use switch function to 
+        # find opp value for each genotype pair (i.e., 0,0 = 0.125):
+        CalcOppsAD <- function(input_str) {
+          switch(input_str,
+                 "0,0" = 0.125,
+                 "0,1" = 0,
+                 "1,0" = -0.25,
+                 "1,1" = 0,
+                 "2,2" = -0.125,
+                 "2,1" = 0,
+                 "1,2" = 0.25,
+                 "2,0" = 0.125,
+                 "0,2" = -0.125,
+                 "Invalid input") # Default value if no match
+        }
+        # store these opp values as vector length 10
         
         # this should return a vector of 10 values, divide each of these values
         # by 10 (since each locus in the genome has the same opportunity to impact
@@ -83,29 +84,29 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
       ##### end of additive by dominance case #####
       ##### dominance by dominance case #####
       if(single.arch == "dom.x.dom"){
-        # compress the genome into vector of values 1-4, representing each genotype 
-          # 1 is 0,0
-          # 2 is 0,1
-          # 3 is 1,0
-          # 4 is 1,1
+        # compress the genome into vector of values 0-2, representing each genotype.
+        # this should be done by taking the colSum of each column in the genome, 
+        # and it should produce a vector of 0, 1, 2 of length 20
+          # 00 = 0
+          # 01 = 1
+          # 10 = 1
+          # 11 = 2
         
         # compare the ith and i+10th values in vector to the following conditions:
-          # if 1,4 then opp = 0.25beta
-          # if 4,1 then opp = 0.25beta
-          # if 1,3 then opp = -0.5beta
-          # if 3,1 then opp = -0.5beta
-          # if 1,2 then opp = -0.5beta
-          # if 2,1 then opp = -0.5beta
-          # if 4,3 then opp = -0.5beta
-          # if 3,4 then opp = -0.5beta
-          # if 4,2 then opp = -0.5beta
-          # if 2,4 then opp = -0.5beta
-          # if 2,3 then opp = 1beta
-          # if 3,2 then opp = 1beta
-          # if 1,1 then opp = 0.25beta
-          # if 2,2 then opp = 1beta
-          # if 3,3 then opp = 1beta
-          # if 4,4 then opp = 0.25beta
+        CalcOppsDD <- function(input_str) {
+          switch(input_str,
+                 "0,0" = 0.25,
+                 "0,1" = -0.5,
+                 "1,0" = -0.5,
+                 "1,1" = 1,
+                 "2,2" = 0.25,
+                 "2,1" = -0.5,
+                 "1,2" = -0.5,
+                 "2,0" = 0.25,
+                 "0,2" = 0.25,
+                 "Invalid input") # Default value if no match
+        }
+        # store these opp values as vector length 10
         
         # this should return a vector of 10 values, divide each of these values
         # by 10 (since each locus in the genome has the same opportunity to impact
@@ -114,8 +115,6 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
         
         # this next line calculates the phenotype for the domxdom trait
         dd.trait <- mu + opp * beta
-        
-        
       }
       ##### end of dominance by dominance case #####
       
