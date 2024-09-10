@@ -29,27 +29,18 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
       ##### end of dominance case #####
       ##### additive by additive case #####
       if(single.arch == "add.x.add"){
-        # if sum(colSums([,i & i+10]) == 0 or 4
-          # then opp == beta/10
-        
-        # if sum(colSums([,i & i+10]) == 1 or 3
-          # then opp == (0.5beta)/10
-        
-        # if sum(colSums([,i & i+10]) == 2
-          # then opp == 0beta/10
-        
-        # the opp for all 10 epi pairs should be stored in a vector, then summed.
-        # this value == opportunity for addxadd to impact pheno (for the whole genome)
-        
+        genvec <- colSums(genome)
+        genvec <- genvec[1:10] + genvec[11:20]
+        bvals <- c(1, .5, 0, .5, 1)
+        opp <- mean(bvals[(genvec+1)])
         # this next line calculates the phenotype for the addxadd trait
         aa.trait <- mu + opp * beta
-        
       }
       ##### end of additive by additive case #####
       ##### additive by dominance case #####
       if(single.arch == "add.x.dom"){
         # compress the genome into vector of values 0-2, representing each genotype.
-        # this should be done by taking the colSum of each column in the genome, 
+        genvec <- colSums(genome)
         # and it should produce a vector of 0, 1, 2 of length 20
           # 00 = 0
           # 01 = 1
@@ -58,25 +49,19 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
         
         # compare the ith and i+10th values in vector, use switch function to 
         # find opp value for each genotype pair (i.e., 0,0 = 0.125):
-        CalcOppsAD <- function(input_str) {
-          switch(input_str,
-                 "0,0" = 0.125,
-                 "0,1" = 0,
-                 "1,0" = -0.25,
-                 "1,1" = 0,
-                 "2,2" = -0.125,
-                 "2,1" = 0,
-                 "1,2" = 0.25,
-                 "2,0" = 0.125,
-                 "0,2" = -0.125,
-                 "Invalid input") # Default value if no match
-        }
-        # store these opp values as vector length 10
-        
-        # this should return a vector of 10 values, divide each of these values
-        # by 10 (since each locus in the genome has the same opportunity to impact
-        # the phenotype), then add all of the values together. this is the opportunity
-        # for addxdom to impact the phenotype (for the whole genome)
+          mlgen <- paste(genvec[1:10], genvec[11:20], sep = ",")
+          lookup <- c("0,0" = 0.125,
+                      "0,1" = 0,
+                      "1,0" = -0.25,
+                      "1,1" = 0,
+                      "2,2" = -0.125,
+                      "2,1" = 0,
+                      "1,2" = 0.25,
+                      "2,0" = 0.125,
+                      "0,2" = -0.125)
+          opp <-mean(lookup[mlgen])
+        # this is the opportunity for addxdom to impact the phenotype 
+        # (for the whole genome)
         
         # this next line calculates the phenotype for the addxdom trait
         ad.trait <- mu + opp * beta
