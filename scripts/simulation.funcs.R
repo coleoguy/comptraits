@@ -27,6 +27,8 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
         t2 <- mu2 + opp2 * beta2
       }
       ##### end of dominance case #####
+    }
+    if(!is.null(single.arch)){
       ##### additive by additive case #####
       if(single.arch == "add.x.add"){
         genvec <- colSums(genome)
@@ -34,7 +36,7 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
         bvals <- c(1, .5, 0, .5, 1)
         opp <- mean(bvals[(genvec+1)])
         # this next line calculates the phenotype for the addxadd trait
-        aa.trait <- mu + opp * beta
+        single.trait <- mu1 + opp * beta1
       }
       ##### end of additive by additive case #####
       ##### additive by dominance case #####
@@ -42,63 +44,62 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
         # compress the genome into vector of values 0-2, representing each genotype.
         genvec <- colSums(genome)
         # and it should produce a vector of 0, 1, 2 of length 20
-          # 00 = 0
-          # 01 = 1
-          # 10 = 1
-          # 11 = 2
+        # 00 = 0
+        # 01 = 1
+        # 10 = 1
+        # 11 = 2
         
         # compare the ith and i+10th values in vector, use switch function to 
         # find opp value for each genotype pair (i.e., 0,0 = 0.125):
-          mlgen <- paste(genvec[1:10], genvec[11:20], sep = ",")
-          lookup <- c("0,0" = 0.125,
-                      "0,1" = 0,
-                      "1,0" = -0.25,
-                      "1,1" = 0,
-                      "2,2" = -0.125,
-                      "2,1" = 0,
-                      "1,2" = 0.25,
-                      "2,0" = 0.125,
-                      "0,2" = -0.125)
-          # this is the opportunity for addxdom to impact the phenotype 
-          # (for the whole genome)
-          opp <-mean(lookup[mlgen])
-
+        mlgen <- paste(genvec[1:10], genvec[11:20], sep = ",")
+        lookup <- c("0,0" = 0.125,
+                    "0,1" = 0,
+                    "1,0" = -0.25,
+                    "1,1" = 0,
+                    "2,2" = -0.125,
+                    "2,1" = 0,
+                    "1,2" = 0.25,
+                    "2,0" = 0.125,
+                    "0,2" = -0.125)
+        # this is the opportunity for addxdom to impact the phenotype 
+        # (for the whole genome)
+        opp <-mean(lookup[mlgen])
+        
         # this next line calculates the phenotype for the addxdom trait
-        ad.trait <- mu + opp * beta
+        single.trait <- mu1 + opp * beta1
       }
       ##### end of additive by dominance case #####
       ##### dominance by dominance case #####
-        if(single.arch == "dom.x.dom"){
-          # compress the genome into vector of values 0-2, representing each genotype.
-          genvec <- colSums(genome)
-          # and it should produce a vector of 0, 1, 2 of length 20
-          # 00 = 0
-          # 01 = 1
-          # 10 = 1
-          # 11 = 2
-          
-          # compare the ith and i+10th values in vector, use switch function to 
-          # find opp value for each genotype pair (i.e., 0,0 = 0.125):
-          mlgen <- paste(genvec[1:10], genvec[11:20], sep = ",")
-          lookup <- c("0,0" = 0.25,
-                      "0,1" = -0.5,
-                      "1,0" = -0.5,
-                      "1,1" = 1,
-                      "2,2" = 0.25,
-                      "2,1" = -0.5,
-                      "1,2" = -0.5,
-                      "2,0" = 0.25,
-                      "0,2" = 0.25)
-          # this is the opportunity for domxdom to impact the phenotype 
-          # (for the whole genome)
-          opp <- mean(lookup[mlgen])
-          
+      if(single.arch == "dom.x.dom"){
+        # compress the genome into vector of values 0-2, representing each genotype.
+        genvec <- colSums(genome)
+        # and it should produce a vector of 0, 1, 2 of length 20
+        # 00 = 0
+        # 01 = 1
+        # 10 = 1
+        # 11 = 2
+        
+        # compare the ith and i+10th values in vector, use switch function to 
+        # find opp value for each genotype pair (i.e., 0,0 = 0.125):
+        mlgen <- paste(genvec[1:10], genvec[11:20], sep = ",")
+        lookup <- c("0,0" = 0.25,
+                    "0,1" = -0.5,
+                    "1,0" = -0.5,
+                    "1,1" = 1,
+                    "2,2" = 0.25,
+                    "2,1" = -0.5,
+                    "1,2" = -0.5,
+                    "2,0" = 0.25,
+                    "0,2" = 0.25)
+        # this is the opportunity for domxdom to impact the phenotype 
+        # (for the whole genome)
+        opp <- mean(lookup[mlgen])
+        
         # this next line calculates the phenotype for the domxdom trait
-        dd.trait <- mu + opp * beta
+        single.trait <- mu1 + opp * beta1
       }
       ##### end of dominance by dominance case #####
-      
-      
+    }
       ##### combine with defining function #####
       if(deffnc == "ratio"){
         ct <- t1/t2
@@ -112,19 +113,10 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
       if(deffnc == "prod"){
         ct <- t1 * t2
       }
+      if(deffnc == "none"){
+        ct <- single.trait
+      }
       ##### end of combine with defining function #####
-    }else{
-      if(single.arch=="add.x.add"){
-        print("not coded yet")
-      }
-      if(single.arch=="add.x.dom"){
-        print("not coded yet")
-      }
-      if(single.arch=="dom.x.dom"){
-        print("not coded yet")
-      }
-    }
-    
     phenos[i] <- ct
   }
   return(phenos)
@@ -152,7 +144,8 @@ Reproduce <- function(pop, N, w, loci){
   pop[,,1:N] <- array(haplotypes, dim = c(2, loci, N))
   return(pop)
 }
-SimulatePop <- function(gen, loci, N, arch1, arch2, deffnc, sigma, opt, mu1, mu2, single.arch){
+SimulatePop <- function(gen, loci, N, arch1, arch2, deffnc, sigma, opt, 
+                        mu1, mu2, beta1, beta2, single.arch){
   # we start our population with random genotypes with each allele at 50%
   # to replicate our expectation for an F∞
   # we will hold our population in an array where each individual
@@ -176,10 +169,10 @@ SimulatePop <- function(gen, loci, N, arch1, arch2, deffnc, sigma, opt, mu1, mu2
     w <- GetFit(obs = phenos, opt = opt, sigma = sigma)
     pop <- Reproduce(pop = pop, N = N, w = w, loci = loci)
   }
-  print(paste("trait 1:", sum(pop[1:2,1:10,1]), " trait 2: ", sum(pop[1:2,11:20,1])))
   return(popmean)
 }
-SimulateCond <- function(reps, gen, loci, N, arch1, arch2, deffnc, sigma, opt, mu1, mu2, single.arch){
+SimulateCond <- function(reps, gen, loci, N, arch1, arch2, deffnc, sigma, opt, 
+                         mu1, mu2, beta1, beta2, single.arch){
   res <- matrix(NA, reps, gen)
   for(i in 1:reps){
     cat(paste("\nWorking on replicate", i))
@@ -187,7 +180,8 @@ SimulateCond <- function(reps, gen, loci, N, arch1, arch2, deffnc, sigma, opt, m
                             N = N, arch1 = arch1,
                             arch2 = arch2, deffnc = deffnc,
                             sigma =sigma, opt = opt, 
-                            mu1 = mu1, mu2 = mu2, single.arch=single.arch)
+                            mu1 = mu1, mu2 = mu2, beta1 = beta1,
+                            beta2 = beta2, single.arch=single.arch)
   }
   return(res)
 }

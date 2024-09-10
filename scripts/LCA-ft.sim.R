@@ -2,10 +2,10 @@
 # 20 unlinked loci
 # foward time population genetic simulation
 source("simulation.funcs.R")
-N <- 100
+N <- 50
 loci <- 20
 gen <- 100
-reps <- 20
+reps <- 5
 
 
 
@@ -18,28 +18,29 @@ reps <- 20
 ## mu: 30, 3
 ## defining function: RATIO
 ## inferred arch: AaAa (best example for this inferred arch)
+res.aa.compound.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
+                                      N = N, arch1 = "add",
+                                      arch2 = "add", deffnc = "sum",
+                                      sigma = 1, opt = 4, 
+                                      mu1 = 10, mu2 = 10,
+                                      beta1 = 8, beta2 = 8,
+                                      single.arch = NULL)
+res.aa.single.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
+                                    N = N, arch1 = NULL,
+                                    arch2 = NULL, deffnc = "none",
+                                    sigma = 1, opt = 15, mu1 = 10,
+                                    beta1 = 5, single.arch = "add.x.add")
 
-arch1 <- "add"
-arch2 <- "dom"
-mu1 <- 30
-mu2 <- 3
-beta1 <- 9.3 
-beta2 <- 1.65
-deffnc <- "sum"
-sigma <- 1
-opt <- 7
-single.arch <- NULL
-res <- SimulateCond(reps = reps, gen = gen, loci = loci,
-                    N = N, arch1 = arch1,
-                    arch2 = arch2, deffnc = deffnc,
-                    sigma =sigma, opt = opt, mu1 = mu1, mu2 = mu2,
-                    single.arch = single.arch)
-
-
-plot(res[1,], type="l", ylim=c(0, max(res)),
-     ylab="compound trait", xlab="generations")
-for(i in 2:nrow(res)){
-  lines(res[i,], col=rainbow(nrow(res))[i])
+# plot generating trait arch
+plot(res.aa.compound.trait[1,], type="l", 
+     ylim=c(range(c(res.aa.single.trait, res.aa.compound.trait))),
+     ylab="Trait Value", xlab="Generations")
+for(i in 2:nrow(res.aa.compound.trait)){
+  lines(res.aa.compound.trait[i,], col="blue")
+}
+# add inferred trait arch
+for(i in 1:nrow(res.aa.single.trait)){
+  lines(res.aa.single.trait[i,], col="red")
 }
 
 
