@@ -59,45 +59,40 @@ Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta
                       "1,2" = 0.25,
                       "2,0" = 0.125,
                       "0,2" = -0.125)
+          # this is the opportunity for addxdom to impact the phenotype 
+          # (for the whole genome)
           opp <-mean(lookup[mlgen])
-        # this is the opportunity for addxdom to impact the phenotype 
-        # (for the whole genome)
-        
+
         # this next line calculates the phenotype for the addxdom trait
         ad.trait <- mu + opp * beta
       }
       ##### end of additive by dominance case #####
       ##### dominance by dominance case #####
-      if(single.arch == "dom.x.dom"){
-        # compress the genome into vector of values 0-2, representing each genotype.
-        # this should be done by taking the colSum of each column in the genome, 
-        # and it should produce a vector of 0, 1, 2 of length 20
+        if(single.arch == "dom.x.dom"){
+          # compress the genome into vector of values 0-2, representing each genotype.
+          genvec <- colSums(genome)
+          # and it should produce a vector of 0, 1, 2 of length 20
           # 00 = 0
           # 01 = 1
           # 10 = 1
           # 11 = 2
-        
-        # compare the ith and i+10th values in vector to the following conditions:
-        CalcOppsDD <- function(input_str) {
-          switch(input_str,
-                 "0,0" = 0.25,
-                 "0,1" = -0.5,
-                 "1,0" = -0.5,
-                 "1,1" = 1,
-                 "2,2" = 0.25,
-                 "2,1" = -0.5,
-                 "1,2" = -0.5,
-                 "2,0" = 0.25,
-                 "0,2" = 0.25,
-                 "Invalid input") # Default value if no match
-        }
-        # store these opp values as vector length 10
-        
-        # this should return a vector of 10 values, divide each of these values
-        # by 10 (since each locus in the genome has the same opportunity to impact
-        # the phenotype), then add all of the values together. this is the opportunity
-        # for domxdom to impact the phenotype (for the whole genome)
-        
+          
+          # compare the ith and i+10th values in vector, use switch function to 
+          # find opp value for each genotype pair (i.e., 0,0 = 0.125):
+          mlgen <- paste(genvec[1:10], genvec[11:20], sep = ",")
+          lookup <- c("0,0" = 0.25,
+                      "0,1" = -0.5,
+                      "1,0" = -0.5,
+                      "1,1" = 1,
+                      "2,2" = 0.25,
+                      "2,1" = -0.5,
+                      "1,2" = -0.5,
+                      "2,0" = 0.25,
+                      "0,2" = 0.25)
+          # this is the opportunity for domxdom to impact the phenotype 
+          # (for the whole genome)
+          opp <- mean(lookup[mlgen])
+          
         # this next line calculates the phenotype for the domxdom trait
         dd.trait <- mu + opp * beta
       }
