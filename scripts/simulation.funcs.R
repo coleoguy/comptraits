@@ -185,4 +185,42 @@ SimulateCond <- function(reps, gen, loci, N, arch1, arch2, deffnc, sigma, opt,
   }
   return(res)
 }
+
+GetRange <- function(arch1, arch2, deffnc, mu1, mu2,
+                     beta1, beta2, single.arch){
+  cmat <- matrix(c(1,.5,0,-.5,-1,
+                   0,.5,1,.5,0,
+                   1,.25,0,.25,1,
+                   0,.25,0,-.25,0,
+                   0,.25,1,.25,0), 5,5)
+  rownames(cmat) <- c("P1","BC1","F1","BC2","P2")
+  colnames(cmat) <- c("add","dom","add.x.add","add.x.dom","dom.x.dom")
+  if(single.arch != "none"){
+    maxval <- mu1 + beta1 * max(cmat[,colnames(cmat) == single.arch])
+    minval <- mu1 + beta1 * min(cmat[,colnames(cmat) == single.arch])
+  }
+  if(single.arch == "none"){
+    maxT1 <- mu1 + beta1 * max(cmat[,colnames(cmat) == arch1])
+    minT1 <- mu1 + beta1 * min(cmat[,colnames(cmat) == arch1])
+    maxT2 <- mu2 + beta2 * max(cmat[,colnames(cmat) == arch2])
+    minT2 <- mu2 + beta2 * min(cmat[,colnames(cmat) == arch2])
+    if(deffnc == "ratio"){
+      maxval <- maxT1 / minT2
+      minval <- minT1 / maxT2
+    }
+    if(deffnc == "sum"){
+      maxval <- maxT1 + maxT2
+      minval <- minT1 + minT2
+    }
+    if(deffnc == "diff"){
+      maxval <- maxT1 - minT2
+      minval <- minT1 - maxT2
+    }
+    if(deffnc == "prod"){
+      maxval <- maxT1 * maxT2
+      minval <- minT1 * minT2
+    }
+  }
+  return(c(minval, maxval))
+}
 ##### End Functions #####

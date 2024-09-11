@@ -16,6 +16,19 @@ reps <- 10
 ## inferred arch: AaAa 
 ## inferred arch beta: 1.891
 ## inferred arch mu: 7.772
+GetRange(arch1 = "add",
+         arch2 = "dom", deffnc = "ratio",
+         mu1 = 30, mu2 = 3,
+         beta1 =7.576, beta2 = 0.788,
+         single.arch = "none")
+# 5.9, 12.5
+GetRange(mu1 = 7.772, 
+         beta1 =1.891, 
+         single.arch = "add.x.add")
+# 7.77, 9.663
+# So we might evaluate this pairing with an optimum of 7.7 or 9.6
+# based on exploration of sigmas we have chosen a sigma of 1 for both of these
+
 res.aa.compound.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                       N = N, arch1 = "add",
                                       arch2 = "dom", deffnc = "ratio",
