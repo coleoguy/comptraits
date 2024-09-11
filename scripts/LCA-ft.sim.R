@@ -32,14 +32,14 @@ GetRange(mu1 = 7.772,
 res.aa.compound.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                       N = N, arch1 = "add",
                                       arch2 = "dom", deffnc = "ratio",
-                                      sigma = 3, opt = 5, 
+                                      sigma = 1, opt = 9.6, 
                                       mu1 = 30, mu2 = 3,
                                       beta1 =7.576, beta2 = 0.788,
                                       single.arch = NULL)
 res.aa.single.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                     N = N, arch1 = NULL,
                                     arch2 = NULL, deffnc = "none",
-                                    sigma = 3, opt = 7, mu1 = 7.772,
+                                    sigma = 1, opt = 9.6, mu1 = 7.772,
                                     beta1 = 1.891, single.arch = "add.x.add")
 
 # plot generating trait arch
@@ -66,17 +66,30 @@ legend("topright", legend=c("Inferred Trait", "Generating Trait"),
 ## inferred arch: AaAd 
 ## inferred arch beta: 3.165
 ## inferred arch mu: 9.44
+GetRange(arch1 = "add",
+         arch2 = "dom", deffnc = "ratio",
+         mu1 = 30, mu2 = 3,
+         beta1 =7.52, beta2 = 0.76,
+         single.arch = "none")
+# 5.978, 12.5067
+GetRange(mu1 = 9.44, 
+         beta1 =3.165, 
+         single.arch = "add.x.dom")
+# 8.649, 10.231
+# So we might evaluate this pairing with an optimum of 8.649 or 10.231
+# based on exploration of sigmas we have chosen a sigma of 1 for both of these
+
 res.ad.compound.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                       N = N, arch1 = "add",
                                       arch2 = "dom", deffnc = "ratio",
-                                      sigma = 1, opt = 4, 
+                                      sigma = 1, opt = 10.231, 
                                       mu1 = 30, mu2 = 3,
                                       beta1 =7.52, beta2 = 0.76,
                                       single.arch = NULL)
 res.ad.single.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                     N = N, arch1 = NULL,
                                     arch2 = NULL, deffnc = "none",
-                                    sigma = 1, opt = 4, mu1 = 9.44,
+                                    sigma = 0.4, opt = 10.231, mu1 = 9.44,
                                     beta1 = 3.165, single.arch = "add.x.dom")
 
 # plot generating trait arch
@@ -103,17 +116,30 @@ legend("topright", legend=c("Inferred Trait", "Generating Trait"),
 ## inferred arch: AdAd 
 ## inferred arch beta: 1.763
 ## inferred arch mu: 7.275
+GetRange(arch1 = "add",
+         arch2 = "dom", deffnc = "ratio",
+         mu1 = 50, mu2 = 6,
+         beta1 = 9.39, beta2 = 1.694,
+         single.arch = "none")
+# 5.278, 12.5
+GetRange(mu1 = 7.275, 
+         beta1 = 1.763, 
+         single.arch = "dom.x.dom")
+# 7.275, 9.038
+# So we might evaluate this pairing with an optimum of 7.275 or 9.038
+# based on exploration of sigmas we have chosen a sigma of 1 for both of these
+
 res.dd.compound.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                       N = N, arch1 = "add",
                                       arch2 = "dom", deffnc = "ratio",
-                                      sigma = 1, opt = 3, 
+                                      sigma = 1, opt = 9.038, 
                                       mu1 = 50, mu2 = 6,
                                       beta1 = 9.39, beta2 = 1.694,
                                       single.arch = NULL)
 res.dd.single.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                     N = N, arch1 = NULL,
                                     arch2 = NULL, deffnc = "none",
-                                    sigma = 1, opt = 3, mu1 = 7.275,
+                                    sigma = 0.4, opt = 9.038, mu1 = 7.275,
                                     beta1 = 1.763, single.arch = "dom.x.dom")
 
 # plot generating trait arch
