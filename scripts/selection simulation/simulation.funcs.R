@@ -174,6 +174,8 @@ SimulatePop <- function(gen, loci, N, arch1, arch2, deffnc, sigma, opt,
 SimulateCond <- function(reps, gen, loci, N, arch1, arch2, deffnc, sigma, opt, 
                          mu1, mu2, beta1, beta2, single.arch){
   res <- matrix(NA, reps, gen)
+  rownames(res) <- paste0("rep", 1:reps)
+  colnames(res) <- paste0("gen", 1:gen)
   for(i in 1:reps){
     cat(paste("\nWorking on replicate", i))
     res[i, ] <- SimulatePop(gen = gen, loci = loci,
