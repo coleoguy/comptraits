@@ -13,7 +13,7 @@ library(shiny)
 ui <- fluidPage(
 
     # Application title
-    titlePanel("Find selection gradient"),
+    titlePanel("Find Selection Gradient"),
 
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
