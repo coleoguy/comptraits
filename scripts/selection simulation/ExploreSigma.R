@@ -46,6 +46,9 @@ plot(x=obs, y=w,
      xlab = 'phenotypes',
      ylab = "fitness",
      main = 'Distribution of fitnesses')
+text(x=obs[1],y=1, paste("min:",
+                         round(min(w), digits=2), 
+                         "\nmax:", round(max(w), digits=2)))
     })
 }
 

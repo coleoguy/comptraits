@@ -30,12 +30,13 @@ GetRange(mu1 = 7.772,
          single.arch = "add.x.add")
 # 7.77, 9.663
 # So we might evaluate this pairing with an optimum of 7.7 or 9.6
-# based on exploration of sigmas we have chosen a sigma of 1 for both of these
+# based on exploration of sigmas we have chosen a sigma of 0.7 for compound trait
+# and 0.38 for single trait
 
 res.aa.compound.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                       N = N, arch1 = "add",
                                       arch2 = "dom", deffnc = "ratio",
-                                      sigma = 1, opt = 9.6, 
+                                      sigma = 0.7, opt = 9.6, 
                                       mu1 = 30, mu2 = 3,
                                       beta1 =7.576, beta2 = 0.788,
                                       single.arch = NULL)
@@ -44,14 +45,14 @@ res.aa.compound.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
 res.aa.single.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                     N = N, arch1 = NULL,
                                     arch2 = NULL, deffnc = "none",
-                                    sigma = 1, opt = 9.6, mu1 = 7.772,
+                                    sigma = 0.38, opt = 9.6, mu1 = 7.772,
                                     beta1 = 1.891, single.arch = "add.x.add")
 #write.csv(res.aa.single.trait, 
           #file = "../../results/selection simulation results/res.aa.single.trait.csv")
 res.aa.single.trait100 <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                     N = 100, arch1 = NULL,
                                     arch2 = NULL, deffnc = "none",
-                                    sigma = 1, opt = 9.6, mu1 = 7.772,
+                                    sigma = 0.38, opt = 9.6, mu1 = 7.772,
                                     beta1 = 1.891, single.arch = "add.x.add")
 #write.csv(res.aa.single.trait100, 
           #file = "../../results/selection simulation results/res.aa.single.trait100.csv")
@@ -101,12 +102,13 @@ GetRange(mu1 = 9.44,
          single.arch = "add.x.dom")
 # 8.649, 10.231
 # So we might evaluate this pairing with an optimum of 8.649 or 10.231
-# based on exploration of sigmas we have chosen a sigma of 1 for both of these
+# based on exploration of sigmas we have chosen a sigma of 0.9 for the compound
+# trait and 0.34 for the single trait
 
 res.ad.compound.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                       N = N, arch1 = "add",
                                       arch2 = "dom", deffnc = "ratio",
-                                      sigma = 1, opt = 10.231, 
+                                      sigma = 0.9, opt = 10.231, 
                                       mu1 = 30, mu2 = 3,
                                       beta1 =7.52, beta2 = 0.76,
                                       single.arch = NULL)
@@ -115,7 +117,7 @@ res.ad.compound.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
 res.ad.single.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                     N = N, arch1 = NULL,
                                     arch2 = NULL, deffnc = "none",
-                                    sigma = 0.4, opt = 10.231, mu1 = 9.44,
+                                    sigma = 0.34, opt = 10.231, mu1 = 9.44,
                                     beta1 = 3.165, single.arch = "add.x.dom")
 #write.csv(res.ad.single.trait, 
           #file = "../../results/selection simulation results/res.ad.single.trait.csv")
@@ -159,12 +161,13 @@ GetRange(mu1 = 7.275,
          single.arch = "dom.x.dom")
 # 7.275, 9.038
 # So we might evaluate this pairing with an optimum of 7.275 or 9.038
-# based on exploration of sigmas we have chosen a sigma of 1 for both of these
+# based on exploration of sigmas we have chosen a sigma of 0.81 for the compound
+# trait and 0.38 for the single trait 
 
 res.dd.compound.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                       N = N, arch1 = "add",
                                       arch2 = "dom", deffnc = "ratio",
-                                      sigma = 1, opt = 9.038, 
+                                      sigma = 0.81, opt = 9.038, 
                                       mu1 = 50, mu2 = 6,
                                       beta1 = 9.39, beta2 = 1.694,
                                       single.arch = NULL)
@@ -173,7 +176,7 @@ res.dd.compound.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
 res.dd.single.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                     N = N, arch1 = NULL,
                                     arch2 = NULL, deffnc = "none",
-                                    sigma = 0.4, opt = 9.038, mu1 = 7.275,
+                                    sigma = 0.38, opt = 9.038, mu1 = 7.275,
                                     beta1 = 1.763, single.arch = "dom.x.dom")
 #write.csv(res.dd.single.trait, 
           #file = "../../results/selection simulation results/res.dd.single.trait.csv")
