@@ -23,7 +23,7 @@ ylims <- c(-.05,1)
 pdf("AaAa_parameters.pdf")
 
 plot(x=0,y=0,xlim=xlims,ylim=ylims,col="white",
-     xlab="phenotype", ylab="fitness")
+     xlab="phenotype", ylab="fitness", cex.axis = 1.1, cex.lab = 1.1)
 lines(x=c(dat[1,1],dat[1,2]),y=c(-0.01,-0.01), lwd=3,col="blue")
 lines(x=c(dat[1,3],dat[1,4]),y=c(-0.04,-0.04), lwd=3,col="red")
 abline(v=dat[1,5],lty=2)
@@ -42,8 +42,11 @@ lines(x=fitdatinf[[2]],
       y=fitdatinf[[1]],
       col="red")
 # add point to each line for phenotype at gen 1
-points(8.84805, -0.01, col="blue", pch=19)
-points(8.480567, -0.04, col="red", pch=19)
+points(8.84805, -0.01, col="blue", pch=19, cex=2)
+points(8.480567, -0.04, col="red", pch=19, cex=2)
+
+legend("topleft", legend=c("Inferred Architecture", "Generating Architecture"),
+       col=c("red", "blue"), lwd=2, lty=1, bty="n", cex=1)
 
 # close the device
 dev.off()
@@ -54,7 +57,7 @@ dev.off()
 pdf("AaAd_parameters.pdf")
 
 plot(x=0,y=0,xlim=xlims,ylim=ylims,col="white",
-     xlab="phenotype", ylab="fitness")
+     xlab="phenotype", ylab="fitness", cex.axis = 1.1, cex.lab = 1.1)
 lines(x=c(dat[2,1],dat[2,2]),y=c(-0.01,-0.01), lwd=3,col="blue")
 lines(x=c(dat[2,3],dat[2,4]),y=c(-0.04,-0.04), lwd=3,col="red")
 abline(v=dat[2,5],lty=2)
@@ -74,8 +77,11 @@ lines(x=fitdatinf[[2]],
       col="red")
 
 # add point to each line for phenotype at gen 1
-points(8.883328, -0.01, col="blue", pch=19)
-points(9.440011, -0.04, col="red", pch=19)
+points(8.883328, -0.01, col="blue", pch=19, cex=2)
+points(9.440011, -0.04, col="red", pch=19, cex=2)
+
+legend("topleft", legend=c("Inferred Architecture", "Generating Architecture"),
+       col=c("red", "blue"), lwd=2, lty=1, bty="n", cex=1)
 
 # close the device
 dev.off()
@@ -87,7 +93,7 @@ dev.off()
 pdf("AdAd_parameters.pdf")
 
 plot(x=0,y=0,xlim=xlims,ylim=ylims,col="white",
-     xlab="phenotype", ylab="fitness")
+     xlab="phenotype", ylab="fitness", cex.axis = 1.1, cex.lab = 1.1)
 lines(x=c(dat[3,1],dat[3,2]),y=c(-0.01,-0.01), lwd=3,col="blue")
 lines(x=c(dat[3,3],dat[3,4]),y=c(-0.04,-0.04), lwd=3,col="red")
 abline(v=dat[3,5],lty=2)
@@ -107,8 +113,11 @@ lines(x=fitdatinf[[2]],
       col="red")
 
 # add point to each line for phenotype at gen 1
-points(7.312431, -0.01, col="blue", pch=19)
-points(7.385211, -0.04, col="red", pch=19)
+points(7.312431, -0.01, col="blue", pch=19, cex=2)
+points(7.385211, -0.04, col="red", pch=19, cex=2)
+
+legend("topleft", legend=c("Inferred Architecture", "Generating Architecture"),
+       col=c("red", "blue"), lwd=2, lty=1, bty="n", cex=1)
 
 # close the device
 dev.off()
