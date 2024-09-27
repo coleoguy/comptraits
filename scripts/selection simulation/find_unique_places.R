@@ -34,14 +34,14 @@ makedat <- function(arch1, arch2, mu1, mu2, beta1, beta2, deffc){
   return(res)
 }
 
-betaSMs <- seq(from=0.5,to=2, length.out=100)
-betaLGs <- seq(from=7,to=10, length.out=100)
+betaSMs <- seq(from=0.5,to=5, length.out=100)
+betaLGs <- seq(from=7,to=15, length.out=100)
 #mu1s <- seq(from=2,to=6, length.out=100)
 #mu2s <- seq(from=10,to=35, length.out=100)
 infarchs <- as.data.frame(matrix(NA, 100, 1))
 for(i in 1:100){
-  dat <- makedat(arch1 = "d", arch2 = "d", mu1 = 30, mu2 = 3, 
-                 beta1 = betaLGs[i], beta2 = betaSMs[i], deffc = "sum")
+  dat <- makedat(arch1 = "a", arch2 = "d", mu1 = 15, mu2 = 100, 
+                 beta2 = betaLGs[i], beta1 = betaSMs[i], deffc = "ratio")
   res <- LCA(data = dat[[1]], SCS = "NSC", keep.pars=c("Aa","Ad","AaAa","AaAd","AdAd"))
   #plot(res)
   infarchs[i,1] <- paste(res$varimp[,1][res$estimates[1,2:ncol(res$estimates)] > res$estimates[2,2:ncol(res$estimates)] & res$varimp[,2] > 0.5], collapse=",")
@@ -51,8 +51,8 @@ for(i in 1:100){
 
 ### use this section to verify that the specific combo of betas and mus leads to 
 ### inference of a specific epi -- remember there is slight variation in makedat
-dat <- makedat(arch1 = "d", arch2 = "d", mu1 = 30, mu2 = 3, 
-               beta1 = 8.636364, beta2 = 1.318182, deffc = "sum")
+dat <- makedat(arch1 = "a", arch2 = "d", mu1 = 100, mu2 = 15, 
+               beta1 = 13.7, beta2 = 4.3, deffc = "ratio")
 res <- LCA(data = dat[[1]], SCS = "NSC", keep.pars=c("Aa","Ad","AaAa","AaAd","AdAd"))
 plot(res)
 
