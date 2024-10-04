@@ -56,30 +56,6 @@ res.aa.single.trait100 <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                     beta1 = 1.891, single.arch = "add.x.add")
 write.csv(res.aa.single.trait100, 
           file = "../../results/selection simulation results/res.aa.single.trait100.csv")
-
-# plot generating trait arch
-plot(res.aa.compound.trait[1,], type="l", 
-     ylim=c(range(c(res.aa.single.trait, res.aa.compound.trait))),
-     ylab="Trait Value", xlab="Generations", main = "Inferred Arch: AaAa", col=alpha("blue",0.5), lwd=0.5)
-for(i in 2:nrow(res.aa.compound.trait)){
-  lines(res.aa.compound.trait[i,], col=alpha("blue", 0.5), lwd=0.5)
-}
-# add inferred trait arch
-for(i in 1:nrow(res.aa.single.trait)){
-  lines(res.aa.single.trait[i,], col=alpha("red",0.5), lwd=0.5)
-}
-for(i in 1:nrow(res.aa.single.trait100)){
-  lines(res.aa.single.trait100[i,], col=alpha("orange", 0.5), lwd=0.5)
-}
-meanline_comp <- colMeans(res.aa.compound.trait)
-meanline_sing <- colMeans(res.aa.single.trait)
-meanline_sing100 <- colMeans(res.aa.single.trait100)
-lines(meanline_comp, col="dark blue", lwd=3)
-lines(meanline_sing, col="dark red", lwd=3)
-lines(meanline_sing100, col="dark orange", lwd=3)
-
-legend("topleft", legend=c("Inferred Trait", "Inferred Trait N=100", "Generating Trait"),
-       col=c("red", "orange", "blue"), lwd=2, lty=1, bty="n", cex=0.7)
 ##### SIMULATION 1 #####
 
 
@@ -121,24 +97,6 @@ res.ad.single.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                     beta1 = 3.165, single.arch = "add.x.dom")
 write.csv(res.ad.single.trait, 
           file = "../../results/selection simulation results/res.ad.single.trait.csv")
-
-# plot generating trait arch
-plot(res.ad.compound.trait[1,], type="l", 
-     ylim=c(range(c(res.ad.single.trait, res.ad.compound.trait))),
-     ylab="Trait Value", xlab="Generations", main="Inferred Arch: AaAd", col=alpha("blue",0.5), lwd=0.5)
-for(i in 2:nrow(res.ad.compound.trait)){
-  lines(res.ad.compound.trait[i,], col=alpha("blue", 0.5), lwd=0.5)
-}
-# add inferred trait arch
-for(i in 1:nrow(res.ad.single.trait)){
-  lines(res.ad.single.trait[i,], col=alpha("red",0.5), lwd=0.5)
-}
-meanline_comp <- colMeans(res.ad.compound.trait)
-meanline_sing <- colMeans(res.ad.single.trait)
-lines(meanline_comp, col="dark blue", lwd=3)
-lines(meanline_sing, col="dark red", lwd=3)
-legend("topleft", legend=c("Inferred Trait", "Generating Trait"),
-       col=c("red", "blue"), lwd=2, lty=1, bty="n", cex=0.7)
 ##### SIMULATION 2 #####
 
 
@@ -180,24 +138,6 @@ res.dd.single.trait <- SimulateCond(reps = reps, gen = gen, loci = loci,
                                     beta1 = 1.763, single.arch = "dom.x.dom")
 write.csv(res.dd.single.trait, 
           file = "../../results/selection simulation results/res.dd.single.trait.csv")
-
-# plot generating trait arch
-plot(res.dd.compound.trait[1,], type="l", 
-     ylim=c(range(c(res.dd.single.trait, res.dd.compound.trait))),
-     ylab="Trait Value", xlab="Generations", main="Inferred Arch: AdAd", col=alpha("blue",0.5), lwd=0.5)
-for(i in 2:nrow(res.dd.compound.trait)){
-  lines(res.dd.compound.trait[i,], col=alpha("blue", 0.5), lwd=0.5)
-}
-# add inferred trait arch
-for(i in 1:nrow(res.dd.single.trait)){
-  lines(res.dd.single.trait[i,], col=alpha("red",0.5), lwd=0.5)
-}
-meanline_comp <- colMeans(res.dd.compound.trait)
-meanline_sing <- colMeans(res.dd.single.trait)
-lines(meanline_comp, col="dark blue", lwd=3)
-lines(meanline_sing, col="dark red", lwd=3)
-legend("topleft", legend=c("Inferred Trait", "Generating Trait"), 
-       col=c("red", "blue"), lwd=2, lty=1, bty="n", cex=0.7)
 ##### SIMULATION 3 ####
 
 
