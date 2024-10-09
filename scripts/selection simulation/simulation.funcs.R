@@ -1,3 +1,6 @@
+# Jorja Burch - jorjaelliott@tamu.edu
+# this script stores the functions used in the LCA-ft.sim.R simulation
+
 ##### Functions #####
 Phenotyper <- function(pop, loci, N, arch1, arch2, deffnc, mu1, mu2, beta1, beta2, single.arch){
   # vector to store phenotypes
