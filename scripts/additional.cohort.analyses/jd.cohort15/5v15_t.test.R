@@ -8,10 +8,10 @@ library(tidyr)
 
 
 # read in partial matrix (condensed version) for 5 cohort set
-small <- read.csv("../results/partial.matrix_mean.csv")
+small <- read.csv("../../../results/partial.matrix_mean.csv")
 
 # read in partial matrix (condensed version) for 15 cohort set
-large <- read.csv("../results/additional.cohorts.results/15cohorts/jd_partial_matrix_means.csv")
+large <- read.csv("../../../results/additional.cohorts.results/15cohorts/jd_partial_matrix_means.csv")
 
 small_numeric <- as.matrix(small[,3:6])
 
@@ -26,6 +26,11 @@ if(!all(dim(small_numeric) == dim(large_numeric))) {
 small_vector <- as.vector(small_numeric)
 large_vector <- as.vector(large_numeric)
 
+# correlation test
+cor.test(small_vector, large_vector)
+# results in significant pos cor (cor = 0.83, p-val = 5.3e-07)
+
+# paired sample t test
 t.test(small_vector, large_vector, paired = TRUE)
 # significant p-val. significant effect of cohort size on compound traits
 

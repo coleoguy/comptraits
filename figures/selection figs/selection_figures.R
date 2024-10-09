@@ -21,7 +21,7 @@ res.aa.single.trait100 <- as.matrix(read.csv("../../results/selection simulation
 plot(res.aa.compound.trait[1,], type="l", 
      ylim=c(range(c(res.aa.single.trait, (res.aa.compound.trait + 0.2)))),
      ylab="Trait Value", xlab="Generations", 
-     col=alpha("blue",0.5), lwd=0.5, cex.axis=1.1, cex.lab=1.1)
+     col=alpha("blue",0.5), lwd=0.5, cex.axis=1.3, cex.lab=1.3)
 for(i in 2:nrow(res.aa.compound.trait)){
   lines(res.aa.compound.trait[i,], col=alpha("blue", 0.5), lwd=0.5)
 }
@@ -39,8 +39,8 @@ lines(meanline_comp, col="dark blue", lwd=3)
 lines(meanline_sing, col="dark red", lwd=3)
 lines(meanline_sing100, col="dark orange", lwd=3)
 
-legend("topleft", legend=c("Inferred Architecture N=500", "Inferred Architecture N=100", "Generating Architecture N=500"),
-       col=c("red", "orange", "blue"), lwd=2, lty=1, bty="n", cex=1)
+legend(x=-3, y=10.07, legend=c("Inferred Architecture N=500", "Inferred Architecture N=100", "Generating Architecture N=500"),
+       col=c("red", "orange", "blue"), lwd=2, lty=1, bty="n", cex=1.3)
 
 # close the pdf device
 dev.off()
@@ -61,7 +61,7 @@ res.ad.single.trait <- as.matrix(read.csv("../../results/selection simulation re
 plot(res.ad.compound.trait[1,], type="l", 
      ylim=c(range(c(res.ad.single.trait, (res.ad.compound.trait + 0.2)))),
      ylab="Trait Value", xlab="Generations",
-     col=alpha("blue",0.5), lwd=0.5, cex.axis=1.1, cex.lab=1.1)
+     col=alpha("blue",0.5), lwd=0.5, cex.axis=1.3, cex.lab=1.3)
 for(i in 2:nrow(res.ad.compound.trait)){
   lines(res.ad.compound.trait[i,], col=alpha("blue", 0.5), lwd=0.5)
 }
@@ -74,7 +74,7 @@ meanline_sing <- colMeans(res.ad.single.trait)
 lines(meanline_comp, col="dark blue", lwd=3)
 lines(meanline_sing, col="dark red", lwd=3)
 legend("topleft", legend=c("Inferred Architecture N=500", "Generating Architecture N=500"),
-       col=c("red", "blue"), lwd=2, lty=1, bty="n", cex=1)
+       col=c("red", "blue"), lwd=2, lty=1, bty="n", cex=1.3)
 
 # close the pdf device
 dev.off()
@@ -95,7 +95,7 @@ res.dd.single.trait <- as.matrix(read.csv("../../results/selection simulation re
 plot(res.dd.compound.trait[1,], type="l", 
      ylim=c(range(c(res.dd.single.trait, (res.dd.compound.trait + 0.2)))),
      ylab="Trait Value", xlab="Generations", col=alpha("blue",0.5), 
-     lwd=0.5, cex.axis=1.1, cex.lab=1.1)
+     lwd=0.5, cex.axis=1.3, cex.lab=1.3)
 for(i in 2:nrow(res.dd.compound.trait)){
   lines(res.dd.compound.trait[i,], col=alpha("blue", 0.5), lwd=0.5)
 }
@@ -108,7 +108,7 @@ meanline_sing <- colMeans(res.dd.single.trait)
 lines(meanline_comp, col="dark blue", lwd=3)
 lines(meanline_sing, col="dark red", lwd=3)
 legend("topleft", legend=c("Inferred Architecture N=500", "Generating Architecture N=500"), 
-       col=c("red", "blue"), lwd=2, lty=1, bty="n", cex=1)
+       col=c("red", "blue"), lwd=2, lty=1, bty="n", cex=1.3)
 
 # close the pdf device
 dev.off()
