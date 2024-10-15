@@ -1,4 +1,39 @@
-# t.tests for fewer cohorts (5) versus more cohorts (8)
+# t.tests for fewer cohorts (5) versus many cohorts (15)
+
+# Load the data
+# sm cohort set
+matrix1 <- read.csv("../../results/partial.matrix.csv")
+
+# lg cohort set
+matrix2 <- read.csv("../../results/additional.cohorts.results/15cohorts/jd.part.matrix.csv")
+
+matrix1 <- matrix1[,c(3:8)]
+matrix2 <- matrix2[,c(3:8)]
+
+# Exclude the first two rows and then vectorize both matrices
+vector1 <- unlist(matrix1)
+vector2 <- unlist(matrix2)
+
+# Perform the paired t-test on the two vectors
+test_result <- t.test(vector1, vector2, paired = TRUE)
+
+# Display the full results of the t-test
+cat("Paired Sample T-Test Results \n")
+cat("t-statistic:", test_result$statistic, "\n")
+cat("p-value:", test_result$p.value, "\n")
+cat("Degrees of freedom:", test_result$parameter, "\n")
+cat("95% Confidence Interval:", test_result$conf.int, "\n")
+cat("Mean of the differences:", test_result$estimate, "\n")
+
+
+
+
+
+
+
+
+
+##### t tests comparing functions & arch pairs ##### not included in paper results
 
 ## means for each function ##
 
@@ -87,6 +122,14 @@ old.fail5.a <- c(0.07, 0.62, 0.32, 0.57, 0.59, 0.59, 0.94, 0.63, 0.94, 0.24,
 new.fail15.a <- c(0.07, 0.41, 0.18, 0.30, 0.30, 0.40, 0.51, 0.34, 0.6, 0.08,
                   0.31, 0.48, 0.24, 0.07, 0.37, 0.54, 0.33, 0.22)
 t.test(old.fail5.a, new.fail15.a)
+
+
+
+part5 <- read.csv("../../results/partial.matrix.csv")
+part15 <- read.csv("../../results/additional.cohorts.results/15cohorts/jd.part.matrix.csv")
+t.test(x=part5, y=part15, paired=T)
+
+
 
 
 
